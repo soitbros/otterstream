@@ -170,7 +170,6 @@ function getAllImg(callback){
 
   function renderImage(image){
     var images = image.img;
-    console.log(images.length);
     console.log("file reader   "+images);
     var $el = ('#imgFromDB');
       var $img = ( $('<img>').attr('src', images) );
