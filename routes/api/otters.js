@@ -2,10 +2,11 @@ var express = require('express');
 var AWS     = require('aws-sdk');
 var crypto  = require('crypto');
 var mime    = require('mime');
+require('dotenv').load()
 AWS.config.region = 'us-east-1';
 AWS.config.update({
-  accessKeyId: 'AKIAJAXEGB36QFNSU34Q',
-  secretAccessKey: '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'
+  accessKeyId: process.env.ACCESSKEYID,
+  secretAccessKey: process.env.SECRETACCESSKEY
 });
 var s3 = new AWS.S3();
 

@@ -14,25 +14,16 @@ $(function(){
                $('#url').val(e.target.result);
                $imgUrl = $('#base').append( ($('<p>').text( e.target.result ) ));
                console.log($imgUrl);
-
-
           };
           FR.readAsDataURL( this.files[0] );
       }
-
   }
-
   $("#asd").change( readImage );
-
-
-
   setImgFormHandler();
 
   var $el = $('#avatar');
   var $formId = $('#form');
   getName($el, $formId);
-
-
 
 }) ///finish main function on load
 
@@ -205,7 +196,6 @@ function getAllImg(callback){
       $list.append($imageView);
     }
   }
-
 
 
   //aleksa staff ends ----

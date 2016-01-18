@@ -12,6 +12,7 @@
     "aws-sdk": "^2.2.30",
     "body-parser": "^1.14.2",
     "crypto": "0.0.3",
+    "dotenv": "^1.2.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "kerberos": "0.0.17",
