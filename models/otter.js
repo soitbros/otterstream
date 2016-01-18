@@ -24,6 +24,8 @@ var otterSchema = mongoose.Schema({
   tumblr: { type: String },
   languages: { type: String },
   coding: { type: String },
+  group: { type: String },
+  graduate: { type: String },
   bio: { type: String },
   img: { type: String}
   //aleksa staff ends

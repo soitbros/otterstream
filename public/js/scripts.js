@@ -53,6 +53,8 @@ function createUser(imgData, callback){
       tumblr:imgData.tumblr,
       languages:imgData.languages,
       coding:imgData.coding,
+      group:imgData.group,
+      graduate:imgData.graduate,
       bio:imgData.bio,
     },
     url: '/api/otters',
@@ -90,6 +92,8 @@ function setUserFormHandler(){
     var formTumblr = $(this).find('input[name="tumblr"]').val();
     var formLanguages = $(this).find('input[name="languages"]').val();
     var formCoding = $(this).find('input[name="coding"]').val();
+    var formGruop = $(this).find('input[name="group"]').val();
+    var formGraduate = $(this).find('input[name="graduate"]').val();
     var formBio = $(this).find('textarea[name="bio"]').val();
     var formUrl = $(this).find('input[name="url"]').val();
     var imgData = {
@@ -116,6 +120,8 @@ function setUserFormHandler(){
       tumblr:formTumblr,
       languages:formLanguages,
       coding:formCoding,
+      group:formGroup,
+      graduate:formGraduate,
       bio:formBio,
       img: formUrl
 

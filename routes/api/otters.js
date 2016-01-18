@@ -86,6 +86,8 @@ router.post('/', function(req, res){
         tumblr: req.body.tumblr,
         languages: req.body.languages,
         coding: req.body.coding,
+        group: req.body.group,
+        graduate: req.body.graduate,
         bio: req.body.bio,
         img: imageRandom || S3_BASE_URL + finalFilename
       });
