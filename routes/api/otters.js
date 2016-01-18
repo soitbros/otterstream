@@ -3,10 +3,11 @@ var AWS     = require('aws-sdk');
 var crypto  = require('crypto');
 var mime    = require('mime');
 
+// ===========aleksa ===============
 var accessKeyId = process.env.ACCESSKEYID;
 var secretAccessKey = process.env.SECRETACCESSKEY
 
-
+// set configu=ration by our zone and set key to access
 AWS.config.region = 'us-east-1';
 AWS.config.update({
   accessKeyId: accessKeyId,
@@ -102,6 +103,6 @@ router.post('/', function(req, res){
   });
 })
 
-//aleksa staff
+//======aleksa staff ends===========
 
 module.exports = router;

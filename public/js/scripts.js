@@ -1,6 +1,6 @@
 console.log('...loaded');
 
-//aleksa staff --------
+//=======aleksa staff ==============
 
 $(function(){
 
@@ -18,10 +18,7 @@ $(function(){
   $("#asd").change( readImage );
   setUserFormHandler();
 
-
 }) ///finish main function on load
-
-
 
 
 //create user with all our data
@@ -65,6 +62,7 @@ function createUser(imgData, callback){
     }
   });
 }
+
 
 function setUserFormHandler(){
   $('form#getData').on('submit', function(e){
@@ -127,16 +125,10 @@ function setUserFormHandler(){
 
     };
     createUser(imgData, function(img){
-
       console.log('weeeee', img);
     })
-
   });
-
 }
-
-
-
 
 // =========================================
 //======actually we don't use it===========
@@ -185,4 +177,4 @@ function getAllImg(callback){
 // =====staff we don't use it ends=====
 // =====================================
 
-  //aleksa staff ends ----
+  //=========aleksa staff ends=========
