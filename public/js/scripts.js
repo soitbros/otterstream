@@ -62,7 +62,7 @@ function createImg(imgData, callback){
       favoriteSong:imgData.favoriteSong,
       favoriteMovie:imgData.favoriteMovie,
       favoriteFood:imgData.favoriteFood,
-      formFavoriteTvShow:imgData.formFavoriteTvShow,
+      formFavoriteTvShow:imgData.favoriteTvShow,
       gender:imgData.gender,
       gitHub:imgData.gitHub,
       linkedIn:imgData.linkedIn,
@@ -91,7 +91,7 @@ function setImgFormHandler(){
     var formName = $(this).find('input[name="name"]').val();
     var formLastName = $(this).find('input[name="lastname"]').val();
     var formBday = $(this).find('input[name="bday"]').val();
-    var formZodiak = $(this).find('input[name="zodiak"]').val();
+    var formZodiak = $(this).find('select[name="zodiak"]').val();
     var formBloodtype = $(this).find('input[name="bloodtype"]').val();
     var formPlaceOfBirth = $(this).find('input[name="placeOfBirth"]').val();
     var formCurrentCity = $(this).find('input[name="currentCity"]').val();
@@ -110,7 +110,7 @@ function setImgFormHandler(){
     var formTumblr = $(this).find('input[name="tumblr"]').val();
     var formLanguages = $(this).find('input[name="languages"]').val();
     var formCoding = $(this).find('input[name="coding"]').val();
-    var formBio = $(this).find('input[name="bio"]').val();
+    var formBio = $(this).find('textarea[name="bio"]').val();
     var formUrl = $(this).find('input[name="url"]').val();
     var imgData = {
 
@@ -125,7 +125,7 @@ function setImgFormHandler(){
       favoriteSong:formFavoriteSong,
       favoriteMovie:formFavoriteMovie,
       favoriteFood:formFavoriteFood,
-      formFavoriteTvShow:formFavoriteTvShow,
+      favoriteTvShow:formFavoriteTvShow,
       gender:formGender,
       gitHub:formGitHub,
       linkedIn:formLinkedIn,

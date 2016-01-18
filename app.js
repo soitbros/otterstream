@@ -3,6 +3,8 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
+require('dotenv').load();
+
 var app = express();
 
 app.set('view engine', 'ejs');

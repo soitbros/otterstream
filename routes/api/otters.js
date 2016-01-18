@@ -2,12 +2,17 @@ var express = require('express');
 var AWS     = require('aws-sdk');
 var crypto  = require('crypto');
 var mime    = require('mime');
-require('dotenv').load()
+
+var accessKeyId = process.env.ACCESSKEYID;
+var secretAccessKey = process.env.SECRETACCESSKEY
+
+
 AWS.config.region = 'us-east-1';
 AWS.config.update({
-  accessKeyId: process.env.ACCESSKEYID,
-  secretAccessKey: process.env.SECRETACCESSKEY
+  accessKeyId: accessKeyId,
+  secretAccessKey: secretAccessKey
 });
+
 var s3 = new AWS.S3();
 
 const S3_BASE_URL = 'https://s3.amazonaws.com/otterstream/'
@@ -48,6 +53,7 @@ router.post('/', function(req, res){
       ACL: "public-read"
     }
     s3.upload(params, function(err, data) {
+      console.log("      err",err);
       if (err) return res.status(400).send("Could not save image");
 
       var user = new Otter({
@@ -78,6 +84,7 @@ router.post('/', function(req, res){
       });
       user.save(function(err, dbOtter){
         console.log(dbOtter + "saved");
+        console.log(err);
         if(err) return res.status(400).send("Could not save record");
 
         res.json(dbOtter);
