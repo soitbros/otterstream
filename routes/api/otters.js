@@ -13,10 +13,9 @@ AWS.config.update({
   secretAccessKey: secretAccessKey
 });
 
+// get access to my amazon bucket to store images
 var s3 = new AWS.S3();
-
 const S3_BASE_URL = 'https://s3.amazonaws.com/otterstream/'
-
 var router = express.Router();
 
 var Otter = require('../../models/otter');
@@ -28,8 +27,13 @@ router.get('/', function(req, res){
 });
 
 router.post('/', function(req, res){
-  if (!req.body.img) return res.status(400).send("Image not part of upload");
-
+  if (!req.body.img) {
+    //if image not upload give random avatar
+    var imageRandom = 'http://api.adorable.io/avatar/'+req.body.name+req.body.lastname
+  }
+  // return res.status(400).send("Image not part of upload");
+  //make magic staff to write in amazon bucket
+  //get out the first part of name when it's encode in base 64 format
   var image = req.body.img;
   var meta = image.split(";")[0];
   var mimeT = meta.replace('data:','');
@@ -42,10 +46,12 @@ router.post('/', function(req, res){
   var fileName = req.body.name;
   var ext = "."+mime.extension(mimeT);
 
+//create random name to store images
   crypto.randomBytes(10, function(err,buf){
     var randFilename = buf.toString('hex');
     var finalFilename = randFilename + ext;
 
+//params of bucket in amazon
     var params = {
       Bucket: "otterstream",
       Key: finalFilename,
@@ -55,6 +61,7 @@ router.post('/', function(req, res){
     s3.upload(params, function(err, data) {
       console.log("      err",err);
       if (err) return res.status(400).send("Could not save image");
+
 
       var user = new Otter({
         name: req.body.name,
@@ -80,7 +87,7 @@ router.post('/', function(req, res){
         languages: req.body.languages,
         coding: req.body.coding,
         bio: req.body.bio,
-        img: S3_BASE_URL + finalFilename
+        img: imageRandom || S3_BASE_URL + finalFilename
       });
       user.save(function(err, dbOtter){
         console.log(dbOtter + "saved");

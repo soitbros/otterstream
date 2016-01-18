@@ -3,49 +3,29 @@ console.log('...loaded');
 //aleksa staff --------
 
 $(function(){
-// updateImageAndViews();
 
-  var $imgUrl;
+//get image from upload form and encode to base64
   function readImage() {
       if ( this.files && this.files[0] ) {
           var FR = new FileReader();
           FR.onload = function(e) {
                $('#img').attr( "src", e.target.result );
                $('#url').val(e.target.result);
-               $imgUrl = $('#base').append( ($('<p>').text( e.target.result ) ));
-               console.log($imgUrl);
           };
           FR.readAsDataURL( this.files[0] );
       }
   }
   $("#asd").change( readImage );
-  setImgFormHandler();
+  setUserFormHandler();
 
-  var $el = $('#avatar');
-  var $formId = $('#form');
-  getName($el, $formId);
 
 }) ///finish main function on load
 
 
-function renderAvatar(name,$el){
-  var url = 'http://api.adorable.io/avatar/'+name;
-  $el.append($('<img>').attr("src",'http://api.adorable.io/avatar/150/'+name));
-}
-
-function getName($el,$formId){
-  $($formId).on('submit', function(e){
-    e.preventDefault();
-    $el.empty();
-    var nameField = $(this).find('input[name="name"]');
-    var name = nameField.val();
-    nameField.val('');
-    renderAvatar(name,$el);
-})
-}
 
 
-function createImg(imgData, callback){
+//create user with all our data
+function createUser(imgData, callback){
   callback = callback || function(){};
   $.ajax({
     method: 'post',
@@ -84,8 +64,8 @@ function createImg(imgData, callback){
   });
 }
 
-function setImgFormHandler(){
-  $('form#getUrl').on('submit', function(e){
+function setUserFormHandler(){
+  $('form#getData').on('submit', function(e){
     e.preventDefault();
     $('#img').attr('src','');
     var formName = $(this).find('input[name="name"]').val();
@@ -140,19 +120,21 @@ function setImgFormHandler(){
       img: formUrl
 
     };
-    createImg(imgData, function(img){
+    createUser(imgData, function(img){
 
       console.log('weeeee', img);
     })
-    updateImageAndViews();
 
   });
+
 }
 
 
 
-//try to get img from db
 
+// =========================================
+//======actually we don't use it===========
+// ========================================
 function getAllImg(callback){
   console.log('aaaaa');
   callback = callback || function(){}
@@ -164,9 +146,7 @@ function getAllImg(callback){
         callback(images);
       }
     });
-
 }
-
 
   function renderImage(image){
     var images = image.img;
@@ -195,6 +175,8 @@ function getAllImg(callback){
       $list.append($imageView);
     }
   }
-
+// ===================================
+// =====staff we don't use it ends=====
+// =====================================
 
   //aleksa staff ends ----
