@@ -16,8 +16,10 @@ app.use(morgan('dev'));
 var indexRouter = require('./routes/index');
 var ottersRouter = require('./routes/api/otters');
 
+
 app.use('/', indexRouter);
 app.use('/api/otters', ottersRouter);
+
 
 
 app.listen(3000, function(){
