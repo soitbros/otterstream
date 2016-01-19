@@ -25,7 +25,7 @@ function setLogInFormHandler(){
     passwordField.val('');
 
     logIn(username, password, function(data){
-      window.location.href = 'http://localhost:3000/profile';
+      window.location.href = '/profile';
     });
   });
 }
@@ -34,7 +34,7 @@ function setLogOutHandler(){
   $('form#log-out').on('submit', function(e){
     e.preventDefault();
     $.removeCookie('token');
-    window.location.href = 'http://localhost:3000/';
+    window.location.href = '/';
   });
 };
 
