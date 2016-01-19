@@ -39,6 +39,8 @@ console.log('...loaded');
       }(document, 'script', 'facebook-jssdk'));
 
 //======chris end====///
+
+//====Clint start===?//
 function logIn(username, password, callback) {
   $.ajax({
     method: 'post',
@@ -80,6 +82,8 @@ function setLogOutHandler(){
   });
 };
 
+//==Clint End ==//
+
 //=======aleksa staff ==============
 
 $(function(){
@@ -105,37 +109,37 @@ $(function(){
 
 
 //create user with all our data
-function createUser(imgData, callback){
+function createUser(otterData, callback){
   callback = callback || function(){};
   $.ajax({
     method: 'post',
     data: {
-      name: imgData.name,
-      img: imgData.img,
-      lastname:imgData.lastname,
-      bday:imgData.bday,
-      zodiak:imgData.zodiak,
-      bloodtype:imgData.bloodtype,
-      placeOfBirth:imgData.placeOfBirth,
-      currentCity:imgData.currentCity,
-      favoriteBook:imgData.favoriteBook,
-      favoriteSong:imgData.favoriteSong,
-      favoriteMovie:imgData.favoriteMovie,
-      favoriteFood:imgData.favoriteFood,
-      formFavoriteTvShow:imgData.favoriteTvShow,
-      gender:imgData.gender,
-      gitHub:imgData.gitHub,
-      linkedIn:imgData.linkedIn,
-      website:imgData.website,
-      facebook:imgData.facebook,
-      twitter:imgData.twitter,
-      instagram:imgData.instagram,
-      tumblr:imgData.tumblr,
-      languages:imgData.languages,
-      coding:imgData.coding,
-      group:imgData.group,
-      graduate:imgData.graduate,
-      bio:imgData.bio,
+      name: otterData.name,
+      img: otterData.img,
+      lastname:otterData.lastname,
+      bday:otterData.bday,
+      zodiak:otterData.zodiak,
+      bloodtype:otterData.bloodtype,
+      placeOfBirth:otterData.placeOfBirth,
+      currentCity:otterData.currentCity,
+      favoriteBook:otterData.favoriteBook,
+      favoriteSong:otterData.favoriteSong,
+      favoriteMovie:otterData.favoriteMovie,
+      favoriteFood:otterData.favoriteFood,
+      formFavoriteTvShow:otterData.favoriteTvShow,
+      gender:otterData.gender,
+      gitHub:otterData.gitHub,
+      linkedIn:otterData.linkedIn,
+      website:otterData.website,
+      facebook:otterData.facebook,
+      twitter:otterData.twitter,
+      instagram:otterData.instagram,
+      tumblr:otterData.tumblr,
+      languages:otterData.languages,
+      coding:otterData.coding,
+      group:otterData.group,
+      graduate:otterData.graduate,
+      bio:otterData.bio,
     },
     url: '/api/otters',
     success: function(data){
@@ -177,7 +181,7 @@ function setUserFormHandler(){
     var formGraduate = $(this).find('input[name="graduate"]').val();
     var formBio = $(this).find('textarea[name="bio"]').val();
     var formUrl = $(this).find('input[name="url"]').val();
-    var imgData = {
+    var otterData = {
 
       name:formName,
       lastname:formLastName,
@@ -207,7 +211,7 @@ function setUserFormHandler(){
       img: formUrl
 
     };
-    createUser(imgData, function(img){
+    createUser(otterData, function(img){
       console.log('weeeee', img);
     })
   });
@@ -216,46 +220,46 @@ function setUserFormHandler(){
 // =========================================
 //======actually we don't use it===========
 // ========================================
-function getAllImg(callback){
-  console.log('aaaaa');
-  callback = callback || function(){}
-    $.ajax({
-      url: '/api/otters',
-      success: function(data){
-        console.log(data.Otter + "wooow");
-        var images = data.Otter;
-        callback(images);
-      }
-    });
-}
-
-  function renderImage(image){
-    var images = image.img;
-    console.log("file reader   "+images);
-    var $el = ('#imgFromDB');
-      var $img = ( $('<img>').attr('src', images) );
-      $( "#imgFromDB" ).append( $img );
-
-  }
-
-  function updateImageAndViews(){
-    console.log('updateImageAndViews');
-    getAllImg(function(images){
-      console.log('here');
-      var $list = $('#imgFromDB');
-      renderImageList(images, $list)
-    })
-  }
-
-  function renderImageList(images, $list){
-    $list.empty();
-    var image;
-    for(var i = 0; i<images.length; i++){
-      image = images[i];
-      $imageView = renderImage(image);
-      $list.append($imageView);
-    }
-  }
+// function getAllImg(callback){
+//   console.log('aaaaa');
+//   callback = callback || function(){}
+//     $.ajax({
+//       url: '/api/otters',
+//       success: function(data){
+//         console.log(data.Otter + "wooow");
+//         var images = data.Otter;
+//         callback(images);
+//       }
+//     });
+// }
+//
+//   function renderImage(image){
+//     var images = image.img;
+//     console.log("file reader   "+images);
+//     var $el = ('#imgFromDB');
+//       var $img = ( $('<img>').attr('src', images) );
+//       $( "#imgFromDB" ).append( $img );
+//
+//   }
+//
+//   function updateImageAndViews(){
+//     console.log('updateImageAndViews');
+//     getAllImg(function(images){
+//       console.log('here');
+//       var $list = $('#imgFromDB');
+//       renderImageList(images, $list)
+//     })
+//   }
+//
+//   function renderImageList(images, $list){
+//     $list.empty();
+//     var image;
+//     for(var i = 0; i<images.length; i++){
+//       image = images[i];
+//       $imageView = renderImage(image);
+//       $list.append($imageView);
+//     }
+//   }
 // ===================================
 // =====staff we don't use it ends=====
 // =====================================
