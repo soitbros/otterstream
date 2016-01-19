@@ -39,11 +39,13 @@ app.use(loadUser);
 
 
 var indexRouter = require('./routes/index');
+var profileRouter = require('./routes/profile');
 var ottersRouter = require('./routes/api/otters');
 var usersRouter = require('./routes/api/users');
 
 
 app.use('/', indexRouter);
+app.use('/profile', profileRouter);
 app.use('/api/otters', ottersRouter);
 app.use('/api/users', usersRouter);
 

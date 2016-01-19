@@ -2,7 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res){
-  res.render('index');
+  if(req.cookies.token){
+    res.render('profile');
+  } else {
+    res.render('index');
+  }
 });
 
 module.exports = router;

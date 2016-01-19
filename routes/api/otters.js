@@ -21,12 +21,6 @@ var router = express.Router();
 
 var Otter = require('../../models/otter');
 
-router.get('/', function(req, res){
-  Otter.find({}, function(err, otters) {
-    res.json({ Otter: otters });
-  });
-});
-
 router.get('/profile', function(req, res){
   Otter.findOne({ id: req.user._id }, function(err, otter) {
     res.json({ Otter: otter });
