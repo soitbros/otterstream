@@ -27,8 +27,9 @@ var otterSchema = mongoose.Schema({
   group: { type: String },
   graduate: { type: String },
   bio: { type: String },
-  img: { type: String}
+  img: { type: String},
   //aleksa staff ends
+  id: {type: String}
 }, { timestamps: true });
 
 module.exports = mongoose.model('Otter', otterSchema);

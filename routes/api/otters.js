@@ -64,11 +64,11 @@ router.post('/', function(req, res){
       if (err) return res.status(400).send("Could not save image");
 
 
-      var user = new Otter({
+      var otter = new Otter({
         name: req.body.name,
         lastname: req.body.lastname,
         bday: req.body.bday,
-        zodiak: req.body.zodiak,
+        zodiac: req.body.zodiac,
         bloodtype: req.body.bloodtype,
         placeOfBirth: req.body.placeOfBirth,
         currentCity: req.body.currentCity,
@@ -92,7 +92,8 @@ router.post('/', function(req, res){
         bio: req.body.bio,
         img: imageRandom || S3_BASE_URL + finalFilename
       });
-      user.save(function(err, dbOtter){
+      otter.id = req.user._id;
+      otter.save(function(err, dbOtter){
         console.log(dbOtter + "saved");
         console.log(err);
         if(err) return res.status(400).send("Could not save record");
