@@ -105,15 +105,20 @@
 
       // Here we run a very simple test of the Graph API after login is
       // successful.  See statusChangeCallback() for when this call is made.
-
-
-
-
-
     </script>
 
-<!--===========
--->
+<!--===========end chris======== -->
+<!--=======clint=============-->
+<script>function tokenCaller() {
+    if($.cookie('token')){
+      $('.token').show();
+    } else {
+      window.location.href = '/';
+    }
+    };
+    tokenCaller();
+    </script>
+<!--===========end clint======== -->
 
 <form id="log-out">
   <button type="submit" value="log-out">Log Out</button>
