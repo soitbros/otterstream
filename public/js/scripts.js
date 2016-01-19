@@ -1,6 +1,6 @@
 console.log('...loaded');
 
-// //========chris=====////
+//========chris=====////
 
       window.fbAsyncInit = function() {
       FB.init({
@@ -25,6 +25,7 @@ console.log('...loaded');
 
       FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
+
       });
 
       };
@@ -37,6 +38,10 @@ console.log('...loaded');
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
+
+
+
+
 
 //======chris end====///
 function logIn(username, password, callback) {
