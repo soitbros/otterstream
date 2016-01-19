@@ -1,8 +1,49 @@
 console.log('...loaded');
 
+function logIn(username, password, callback) {
+  $.ajax({
+    method: 'post',
+    url: 'api/users/authenticate',
+    data: {username: username, password: password},
+    success: function(data){
+      $.cookie('token', data.token);
+      callback(data);
+    }
+  });
+}
+
+function setLogInFormHandler(){
+  $('form#log-in').on('submit', function(e){
+    e.preventDefault();
+
+    var usernameField = $(this).find('input[name="username"]');
+    var username = usernameField.val();
+    usernameField.val('');
+
+    var passwordField = $(this).find('input[name="password"]');
+    var password = passwordField.val();
+    passwordField.val('');
+
+    logIn(username, password, function(data){
+      window.location.href = 'http://localhost:3000/profile';
+    });
+  });
+}
+
+function setLogOutHandler(){
+  $('form#log-out').on('submit', function(e){
+    e.preventDefault();
+    $.removeCookie('token');
+    window.location.href = 'http://localhost:3000/';
+  });
+};
+
 //=======aleksa staff ==============
 
 $(function(){
+
+  setLogInFormHandler();
+  setLogOutHandler();
 
 //get image from upload form and encode to base64
   function readImage() {

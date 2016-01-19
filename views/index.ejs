@@ -4,15 +4,34 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" charset="utf-8"></script>
     <script src="/js/scripts.js" charset="utf-8"></script>
     <title>OtterStream</title>
   </head>
   <body>
     <h1>Hi!</h1>
-    < --clint'bvnbvnvnvns junk -->
-]
+    <!--clint'bvnbvnvnvns junk -->
+    <div class="content-block">
+      <div class="sign-up">
+        <h4>Sign Up</h4>
+        <form id="sign-up" action="/api/users" method="post">
+          <input type="text" name="user[username]" placeholder="Username">
+          <input type="password" name="user[password]" placeholder="Password">
+          <input type="submit" style="visibility: hidden;">
+        </form>
+      </div>
 
-    < --clint's junk -->
+      <div class="log-in">
+        <h4>Log In</h4>
+        <form id="log-in">
+          <input type="text" name="username" placeholder="Username">
+          <input type="password" name="password" placeholder="Password">
+          <input type="submit" style="visibility: hidden;">
+        </form>
+      </div>
+    </div>
+
+    <!--clint's junk -->
 
 
     <div id="status">
