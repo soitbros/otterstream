@@ -27,6 +27,12 @@ router.get('/', function(req, res){
   });
 });
 
+router.get('/profile', function(req, res){
+  Otter.findOne({ id: req.user._id }, function(err, otter) {
+    res.json({ Otter: otter });
+  });
+});
+
 router.post('/', function(req, res){
   if (!req.body.img) {
     //if image not upload give random avatar

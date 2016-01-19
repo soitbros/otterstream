@@ -30,5 +30,11 @@ router.post('/authenticate', function(req, res){
   })
 });
 
+router.get('/', function(req, res){
+  User.find({}, function(err, users) {
+    res.json({ User: users });
+  });
+});
+
 
 module.exports = router;

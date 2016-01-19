@@ -122,38 +122,37 @@ function   makeDiv(id,name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCi
 function makeUsers(){
   $.ajax({
     method: 'get',
-    url: '/api/otters',
+    url: '/api/otters/profile',
     success: function(data){
-      for (var i = 0; i < data.Otter.length; i++) {
-        var id = data.Otter[i]._id;
-        var name = data.Otter[i].name;
-        var lastname = data.Otter[i].lastname;
-        var bday = data.Otter[i].bday;
-        var zodiac = data.Otter[i].zodiac;
-        var bloodtype = data.Otter[i].bloodtype;
-        var placeOfBirth = data.Otter[i].placeOfBirth;
-        var currentCity = data.Otter[i].currentCity;
-        var favoriteBook = data.Otter[i].favoriteBook;
-        var favoriteSong = data.Otter[i].favoriteSong;
-        var favoriteMovie = data.Otter[i].favoriteMovie;
-        var favoriteFood = data.Otter[i].favoriteFood;
-        var favoriteTvShow = data.Otter[i].favoriteTvShow;
-        var gender = data.Otter[i].gender;
-        var gitHub = data.Otter[i].gitHub;
-        var linkedIn = data.Otter[i].linkedIn;
-        var website = data.Otter[i].website;
-        var facebook = data.Otter[i].facebook;
-        var twitter = data.Otter[i].twitter;
-        var instagram = data.Otter[i].instagram;
-        var tumblr = data.Otter[i].tumblr;
-        var languages = data.Otter[i].languages;
-        var coding = data.Otter[i].coding;
-        var group = data.Otter[i].group;
-        var graduate = data.Otter[i].graduate;
-        var bio = data.Otter[i].bio;
-        var img = data.Otter[i].img;
+      console.log(data);
+        var id = data.Otter._id;
+        var name = data.Otter.name;
+        var lastname = data.Otter.lastname;
+        var bday = data.Otter.bday;
+        var zodiac = data.Otter.zodiac;
+        var bloodtype = data.Otter.bloodtype;
+        var placeOfBirth = data.Otter.placeOfBirth;
+        var currentCity = data.Otter.currentCity;
+        var favoriteBook = data.Otter.favoriteBook;
+        var favoriteSong = data.Otter.favoriteSong;
+        var favoriteMovie = data.Otter.favoriteMovie;
+        var favoriteFood = data.Otter.favoriteFood;
+        var favoriteTvShow = data.Otter.favoriteTvShow;
+        var gender = data.Otter.gender;
+        var gitHub = data.Otter.gitHub;
+        var linkedIn = data.Otter.linkedIn;
+        var website = data.Otter.website;
+        var facebook = data.Otter.facebook;
+        var twitter = data.Otter.twitter;
+        var instagram = data.Otter.instagram;
+        var tumblr = data.Otter.tumblr;
+        var languages = data.Otter.languages;
+        var coding = data.Otter.coding;
+        var group = data.Otter.group;
+        var graduate = data.Otter.graduate;
+        var bio = data.Otter.bio;
+        var img = data.Otter.img;
         makeDiv(id,name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img);
-      }
     }
   });
 }
@@ -166,7 +165,6 @@ $(function(){
   setLogInFormHandler();
   setLogOutHandler();
   makeUsers();
-  console.log(req.user._id);
 
 //get image from upload form and encode to base64
   function readImage() {
