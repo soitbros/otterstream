@@ -114,12 +114,7 @@ function   makeDiv(id,name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCi
   $el.append( $('<div>').addClass('group').text(group) );
   $el.append( $('<div>').addClass('graduate').text(graduate) );
   $el.append( $('<div>').addClass('bio').text(bio) );
-  console.log(img, 'img');
   $el.append( $('<img>').addClass('img').attr('src' , img) );
-
-
-
-
 
   $('.profile').append($el);
 }
@@ -130,7 +125,6 @@ function makeUsers(){
     url: '/api/otters',
     success: function(data){
       for (var i = 0; i < data.Otter.length; i++) {
-        console.log(data);
         var id = data.Otter[i]._id;
         var name = data.Otter[i].name;
         var lastname = data.Otter[i].lastname;
@@ -169,10 +163,10 @@ function makeUsers(){
 //=======aleksa staff ==============
 
 $(function(){
-
   setLogInFormHandler();
   setLogOutHandler();
   makeUsers();
+  console.log(req.user._id);
 
 //get image from upload form and encode to base64
   function readImage() {
