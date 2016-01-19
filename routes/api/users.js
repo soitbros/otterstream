@@ -2,11 +2,6 @@ var express = require('express');
 var router = express.Router();
 var User = require('../../models/user')
 
-router.get('/', function(req, res){
-  User.find({}, function(err, users) {
-    res.json({ User: users });
-  });
-});
 
 router.post('/', function(req, res){
   var userData = req.body.user;
