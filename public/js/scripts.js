@@ -82,6 +82,83 @@ function setLogOutHandler(){
   });
 };
 
+function   makeDiv(id,name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img){
+  var $el = $('<div>').addClass('container');
+  $el.append( $('<div>').addClass('id').text(id) );
+  $el.append( $('<div>').addClass('name').text(name) );
+  $el.append( $('<div>').addClass('lastname').text(lastname) );
+  $el.append( $('<div>').addClass('bday').text(bday) );
+  $el.append( $('<div>').addClass('bloodtype').text(bloodtype) );
+  $el.append( $('<div>').addClass('placeOfBirth').text(placeOfBirth) );
+  $el.append( $('<div>').addClass('currentCity').text(currentCity) );
+  $el.append( $('<div>').addClass('favoriteBook').text(favoriteBook) );
+  $el.append( $('<div>').addClass('favoriteSong').text(favoriteSong) );
+  $el.append( $('<div>').addClass('favoriteMovie').text(favoriteMovie) );
+  $el.append( $('<div>').addClass('favoriteFood').text(favoriteFood) );
+  $el.append( $('<div>').addClass('favoriteTvShow').text(favoriteTvShow) );
+  $el.append( $('<div>').addClass('gender').text(gender) );
+  $el.append( $('<div>').addClass('gitHub').text(gitHub) );
+  $el.append( $('<div>').addClass('linkedIn').text(linkedIn) );
+  $el.append( $('<div>').addClass('website').text(website) );
+  $el.append( $('<div>').addClass('facebook').text(facebook) );
+  $el.append( $('<div>').addClass('twitter').text(twitter) );
+  $el.append( $('<div>').addClass('instagram').text(instagram) );
+  $el.append( $('<div>').addClass('tumblr').text(tumblr) );
+  $el.append( $('<div>').addClass('languages').text(languages) );
+  $el.append( $('<div>').addClass('coding').text(coding) );
+  $el.append( $('<div>').addClass('group').text(group) );
+  $el.append( $('<div>').addClass('graduate').text(graduate) );
+  $el.append( $('<div>').addClass('bio').text(bio) );
+  console.log(img, 'img');
+  $el.append( $('<img>').addClass('img').attr('src' , img) );
+
+
+
+
+
+  $('.profile').append($el);
+}
+
+function makeUsers(){
+  $.ajax({
+    method: 'get',
+    url: '/api/otters',
+    success: function(data){
+      for (var i = 0; i < data.Otter.length; i++) {
+        console.log(data);
+        var id = data.Otter[i]._id;
+        var name = data.Otter[i].name;
+        var lastname = data.Otter[i].lastname;
+        var bday = data.Otter[i].bday;
+        var zodiac = data.Otter[i].zodiac;
+        var bloodtype = data.Otter[i].bloodtype;
+        var placeOfBirth = data.Otter[i].placeOfBirth;
+        var currentCity = data.Otter[i].currentCity;
+        var favoriteBook = data.Otter[i].favoriteBook;
+        var favoriteSong = data.Otter[i].favoriteSong;
+        var favoriteMovie = data.Otter[i].favoriteMovie;
+        var favoriteFood = data.Otter[i].favoriteFood;
+        var favoriteTvShow = data.Otter[i].favoriteTvShow;
+        var gender = data.Otter[i].gender;
+        var gitHub = data.Otter[i].gitHub;
+        var linkedIn = data.Otter[i].linkedIn;
+        var website = data.Otter[i].website;
+        var facebook = data.Otter[i].facebook;
+        var twitter = data.Otter[i].twitter;
+        var instagram = data.Otter[i].instagram;
+        var tumblr = data.Otter[i].tumblr;
+        var languages = data.Otter[i].languages;
+        var coding = data.Otter[i].coding;
+        var group = data.Otter[i].group;
+        var graduate = data.Otter[i].graduate;
+        var bio = data.Otter[i].bio;
+        var img = data.Otter[i].img;
+        makeDiv(id,name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img);
+      }
+    }
+  });
+}
+
 //==Clint End ==//
 
 //=======aleksa staff ==============
@@ -90,6 +167,7 @@ $(function(){
 
   setLogInFormHandler();
   setLogOutHandler();
+  makeUsers();
 
 //get image from upload form and encode to base64
   function readImage() {
@@ -177,7 +255,7 @@ function setUserFormHandler(){
     var formTumblr = $(this).find('input[name="tumblr"]').val();
     var formLanguages = $(this).find('input[name="languages"]').val();
     var formCoding = $(this).find('input[name="coding"]').val();
-    var formGruop = $(this).find('input[name="group"]').val();
+    var formGroup = $(this).find('input[name="group"]').val();
     var formGraduate = $(this).find('input[name="graduate"]').val();
     var formBio = $(this).find('textarea[name="bio"]').val();
     var formUrl = $(this).find('input[name="url"]').val();
