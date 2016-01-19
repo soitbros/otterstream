@@ -4,6 +4,23 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var loadUser = require('./middleware/loadUser');
+// =====aleksa staff=====
+
+var server = require('http').Server(app);
+
+// loading socket abilities
+// attaching them to our server
+var socketIo = require('socket.io');
+var io = socketIo(server);
+// socket routing event handling
+io.on('connection', function(socket){
+  console.log('...new connection');
+  socket.on('user message to server', function(data){
+    io.sockets.emit('glabally sent message', data);
+  });
+});
+
+// =======aleksa stafff=========
 
 
 require('dotenv').load();
