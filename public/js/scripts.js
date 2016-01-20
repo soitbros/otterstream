@@ -128,28 +128,6 @@ function makeUsers(){
   });
 }
 
-$(function(){
-  setLogInFormHandler();
-  setProjectFormHandler();
-  setBlogFormHandler();
-  setLogOutHandler();
-  makeUsers();
-
-  function readImage() {
-      if ( this.files && this.files[0] ) {
-          var FR = new FileReader();
-          FR.onload = function(e) {
-               $('#img').attr( "src", e.target.result );
-               $('#url').val(e.target.result);
-          };
-          FR.readAsDataURL( this.files[0] );
-      }
-  }
-  $("#asd").change( readImage );
-  setUserFormHandler();
-
-})
-
 function createUser(otterData, callback){
   callback = callback || function(){};
   $.ajax({
@@ -257,6 +235,28 @@ function setUserFormHandler(){
   });
 }
 
+function setProjectFormHandler(){
+  $('form#getProjectData').on('submit', function(e){
+    e.preventDefault();
+    var formProjectName = $(this).find('input[name="projectName"]').val();
+    var formProjectLanguage = $(this).find('input[name="projectLanguage"]').val();
+    var formProjectImg = $(this).find('input[name="projectImg"]').val();
+    var formProjectDescription = $(this).find('input[name="projectDescription"]').val();
+    var formProjectGitHubLink = $(this).find('input[name="projectGitHubLink"]').val();
+    var formProjectPublicLink = $(this).find('input[name="projectPublicLink"]').val();
+    var projectData = {
+      projectName:formProjectName,
+      projectLanguage:formProjectLanguage,
+      projectImg:formProjectImg,
+      projectDescription:formProjectDescription,
+      projectGitHubLink:formProjectGitHubLink,
+      projectPublicLink:formProjectPublicLink
+    };
+    createProject(projectData, function(project){
+    })
+  });
+}
+
 function createProject(projectData, callback){
   callback = callback || function(){};
   $.ajax({
@@ -314,74 +314,26 @@ function renderBlog(blog){
   $('.profile').append($el);
 }
 
-function setProjectFormHandler(){
-  $('form#getProjectData').on('submit', function(e){
-    e.preventDefault();
-    var formProjectName = $(this).find('input[name="projectName"]').val();
-    var formProjectLanguage = $(this).find('input[name="projectLanguage"]').val();
-    var formProjectImg = $(this).find('input[name="projectImg"]').val();
-    var formProjectDescription = $(this).find('input[name="projectDescription"]').val();
-    var formProjectGitHubLink = $(this).find('input[name="projectGitHubLink"]').val();
-    var formProjectPublicLink = $(this).find('input[name="projectPublicLink"]').val();
-    var projectData = {
-      projectName:formProjectName,
-      projectLanguage:formProjectLanguage,
-      projectImg:formProjectImg,
-      projectDescription:formProjectDescription,
-      projectGitHubLink:formProjectGitHubLink,
-      projectPublicLink:formProjectPublicLink
-    };
-    console.log(projectData);
-    createProject(projectData, function(project){
-    })
-  });
-}
 
-// =========================================
-//======actually we don't use it===========
-// ========================================
-// function getAllImg(callback){
-//   console.log('aaaaa');
-//   callback = callback || function(){}
-//     $.ajax({
-//       url: '/api/otters',
-//       success: function(data){
-//         console.log(data.Otter + "wooow");
-//         var images = data.Otter;
-//         callback(images);
-//       }
-//     });
-// }
-//
-//   function renderImage(image){
-//     var images = image.img;
-//     console.log("file reader   "+images);
-//     var $el = ('#imgFromDB');
-//       var $img = ( $('<img>').attr('src', images) );
-//       $( "#imgFromDB" ).append( $img );
-//
-//   }
-//
-//   function updateImageAndViews(){
-//     console.log('updateImageAndViews');
-//     getAllImg(function(images){
-//       console.log('here');
-//       var $list = $('#imgFromDB');
-//       renderImageList(images, $list)
-//     })
-//   }
-//
-//   function renderImageList(images, $list){
-//     $list.empty();
-//     var image;
-//     for(var i = 0; i<images.length; i++){
-//       image = images[i];
-//       $imageView = renderImage(image);
-//       $list.append($imageView);
-//     }
-//   }
-// ===================================
-// =====staff we don't use it ends=====
-// =====================================
 
-  //=========aleksa staff ends=========
+$(function(){
+  setLogInFormHandler();
+  setProjectFormHandler();
+  setBlogFormHandler();
+  setLogOutHandler();
+  makeUsers();
+
+  function readImage() {
+      if ( this.files && this.files[0] ) {
+          var FR = new FileReader();
+          FR.onload = function(e) {
+               $('#img').attr( "src", e.target.result );
+               $('#url').val(e.target.result);
+          };
+          FR.readAsDataURL( this.files[0] );
+      }
+  }
+  $("#asd").change( readImage );
+  setUserFormHandler();
+
+})
