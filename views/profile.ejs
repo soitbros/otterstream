@@ -11,14 +11,8 @@
   </head>
   <body>
     <script>
-    // function testAPI() {
-    //   console.log('Welcome!  Fetching your information.... ');
-    //   FB.api('/me', function(response) {
-    //     console.log('Successful login for: ' + response.name);
-    //     // document.getElementById('status').innerHTML =
-    //     //   'Thanks for logging in, ' + response.name + '!';
-    //   });
-    // }
+
+
       // This is called with the results from from FB.getLoginStatus().
       function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -77,21 +71,16 @@
       FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
 
-        FB.api('/me', {fields: 'id,email,birthday,bio,last_name,first_name' }, function(response) {
+        FB.api('/me', {fields: 'id,birthday,bio,last_name,first_name' }, function(response) {
           console.log(response, "im heeeeere");
           $('#getData').find('input[name="name"]').val(response.first_name);
           $('#getData').find('input[name="lastname"]').val(response.last_name);
           $('#getData').find('input[name="bday"]').val(response.birthday);
           $('#getData').find('input[name="bio"]').val(response.bio);
 
-
-
         });
-
       });
-
       };
-
 
       // Load the SDK asynchronously
       (function(d, s, id) {
@@ -108,7 +97,7 @@
 
 <!--===========end chris======== -->
 <!--=======clint=============-->
-<script>function tokenCaller() {
+<!-- <script>function tokenCaller() {
     if($.cookie('token')){
       $('.token').show();
     } else {
@@ -116,7 +105,7 @@
     }
     };
     tokenCaller();
-    </script>
+    </script> -->
 <!--===========end clint======== -->
 
 <form id="log-out">
