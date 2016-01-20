@@ -122,6 +122,16 @@ router.post('/projects', function(req, res){
   });
 });
 
+router.post('/blogs', function(req, res){
+  var blogData = req.body.blogData || {};
+  Otter.findOne({ id: req.user._id }, function(err, dbOtter){
+    var blog = dbOtter.blogs.push(blogData);
+    dbOtter.save(function(err){
+      res.json(blogData);
+    });
+  });
+});
+
 //======aleksa staff ends===========
 
 module.exports = router;

@@ -1,51 +1,25 @@
 console.log('...loaded');
 
-//========chris=====////
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1499610890345471',
+    cookie     : true,
+    xfbml      : true,
+    version    : 'v2.2'
+  });
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+};
 
-      window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '1499610890345471',
-        cookie     : true,  // enable cookies to allow the server to access
-                            // the session
-        xfbml      : true,  // parse social plugins on this page
-        version    : 'v2.2' // use version 2.2
-      });
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
-      // Now that we've initialized the JavaScript SDK, we call
-      // FB.getLoginStatus().  This function gets the state of the
-      // person visiting this page and can return one of three states to
-      // the callback you provide.  They can be:
-      //
-      // 1. Logged into your app ('connected')
-      // 2. Logged into Facebook, but not your app ('not_authorized')
-      // 3. Not logged into Facebook and can't tell if they are logged into
-      //    your app or not.
-      //
-      // These three cases are handled in the callback function.
-
-      FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-
-      });
-
-      };
-
-      // Load the SDK asynchronously
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-
-
-
-
-
-//======chris end====///
-
-//====Clint start===?//
 function logIn(username, password, callback) {
   $.ajax({
     method: 'post',
@@ -154,17 +128,13 @@ function makeUsers(){
   });
 }
 
-//==Clint End ==//
-
-//=======aleksa staff ==============
-
 $(function(){
   setLogInFormHandler();
   setProjectFormHandler();
+  setBlogFormHandler();
   setLogOutHandler();
   makeUsers();
 
-//get image from upload form and encode to base64
   function readImage() {
       if ( this.files && this.files[0] ) {
           var FR = new FileReader();
@@ -178,10 +148,8 @@ $(function(){
   $("#asd").change( readImage );
   setUserFormHandler();
 
-}) ///finish main function on load
+})
 
-
-//create user with all our data
 function createUser(otterData, callback){
   callback = callback || function(){};
   $.ajax({
@@ -285,7 +253,6 @@ function setUserFormHandler(){
 
     };
     createUser(otterData, function(img){
-      console.log('weeeee', img);
     })
   });
 }
@@ -311,6 +278,38 @@ function renderProject(project){
   $el.append( $('<div>').addClass('projectDescription').text(project.projectDescription) );
   $el.append( $('<div>').addClass('projectGitHubLink').text(project.projectGitHubLink) );
   $el.append( $('<div>').addClass('projectPublicLink').text(project.projectPublicLink) );
+
+  $('.profile').append($el);
+}
+
+function setBlogFormHandler(){
+  $('form#getBlogData').on('submit', function(e){
+    e.preventDefault();
+    var formBlogBody = $(this).find('textarea[name="blogBody"]').val();
+    var blogData = {
+      blogBody:formBlogBody,
+    };
+    createBlog(blogData, function(blog){
+    })
+  });
+}
+
+function createBlog(blogData, callback){
+  callback = callback || function(){};
+  $.ajax({
+    url: '/api/otters/blogs',
+    method: 'post',
+    data: {blogData},
+    success: function(data){
+      var blog = data.blog;
+      callback(blog);
+    }
+  });
+}
+
+function renderBlog(blog){
+  var $el = $('<div>').addClass('project');
+  $el.append( $('<div>').addClass('blogBody').html(blog.blogBody) );
 
   $('.profile').append($el);
 }
