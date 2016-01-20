@@ -87,7 +87,7 @@ function setLogOutHandler(){
   });
 };
 
-function   makeDiv(id,name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img){
+function   makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img){
   var $el = $('<div>').addClass('container');
   $el.append( $('<div>').addClass('name').text(name + ' ' + lastname) );
   $el.append( $('<div>').addClass('bday').text(bday) );
@@ -123,7 +123,6 @@ function makeUsers(){
     method: 'get',
     url: '/api/otters/profile',
     success: function(data){
-      var id = data.Otter._id;
       var name = data.Otter.name;
       var lastname = data.Otter.lastname;
       var bday = data.Otter.bday;
@@ -150,7 +149,7 @@ function makeUsers(){
       var graduate = data.Otter.graduate;
       var bio = data.Otter.bio;
       var img = data.Otter.img;
-      makeDiv(id,name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img);
+      makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img);
     }
   });
 }
@@ -161,6 +160,7 @@ function makeUsers(){
 
 $(function(){
   setLogInFormHandler();
+  setProjectFormHandler();
   setLogOutHandler();
   makeUsers();
 
@@ -290,49 +290,53 @@ function setUserFormHandler(){
   });
 }
 
-// function createProject(profileID, projectData, callback){
-//   callback = callback || function(){};
-//   $.ajax({
-//     url: '/api/haikus/' + projectID + '/projects',
-//     method: 'post',
-//     data: {comment: commentBody},
-//     success: function(data){
-//       var comment = data.comment;
-//       callback(comment);
-//     }
-//   });
-// }
-//
-// function renderProject(project){
-//   var $el = $('<div>').addClass('comment');
-//   $el.append( $('<h4>').addClass('username').text(comment.username) );
-//   $el.append( $('<p>').addClass('comment-body').text(comment.body) );
-//   return $el;
-// }
-//
-// function setCommentFormHandler(){
-//   $('body').on('submit', 'form#getProjectData', function(e){
-//     e.preventDefault();
-//     var profileID = $(this).find('input[name="profile-id"]').val();
-//     var formProjectName = $(this).find('input[name="projectName"]').val();
-//     var formProjectLanguage = $(this).find('input[name="projectLanguage"]').val();
-//     var formProjectImg = $(this).find('input[name="projectImg"]').val();
-//     var formProjectDescription = $(this).find('input[name="projectDescription"]').val();
-//     var formProjectGitHubLink = $(this).find('input[name="projectGitHubLink"]').val();
-//     var formProjectPublicLink = $(this).find('input[name="projectPublicLink"]').val();
-//     var projectData = {
-//       projectName:formProjectName,
-//       projectLanguage:formProjectLanguage,
-//       projectImg:formProjectImg,
-//       projectDescription:formProjectDescription,
-//       projectGitHubLink:formProjectGitHubLink,
-//       projectPublicLink:formPublicLink
-//     };
-//     console.log(projectData);
-//     createComment(profileID, projectData, function(project){
-//     })
-//   });
-// }
+function createProject(projectData, callback){
+  callback = callback || function(){};
+  $.ajax({
+    url: '/api/otters/projects',
+    method: 'post',
+    data: {projectData},
+    success: function(data){
+      var project = data.project;
+      callback(project);
+    }
+  });
+}
+
+function renderProject(project){
+  var $el = $('<div>').addClass('project');
+  $el.append( $('<div>').addClass('projectName').text(project.projectName) );
+  $el.append( $('<div>').addClass('projectLanguage').text(project.projectLanguage) );
+  $el.append( $('<img>').addClass('projectImg').attr('src' , projectImg) );
+  $el.append( $('<div>').addClass('projectDescription').text(project.projectDescription) );
+  $el.append( $('<div>').addClass('projectGitHubLink').text(project.projectGitHubLink) );
+  $el.append( $('<div>').addClass('projectPublicLink').text(project.projectPublicLink) );
+
+  $('.profile').append($el);
+}
+
+function setProjectFormHandler(){
+  $('form#getProjectData').on('submit', function(e){
+    e.preventDefault();
+    var formProjectName = $(this).find('input[name="projectName"]').val();
+    var formProjectLanguage = $(this).find('input[name="projectLanguage"]').val();
+    var formProjectImg = $(this).find('input[name="projectImg"]').val();
+    var formProjectDescription = $(this).find('input[name="projectDescription"]').val();
+    var formProjectGitHubLink = $(this).find('input[name="projectGitHubLink"]').val();
+    var formProjectPublicLink = $(this).find('input[name="projectPublicLink"]').val();
+    var projectData = {
+      projectName:formProjectName,
+      projectLanguage:formProjectLanguage,
+      projectImg:formProjectImg,
+      projectDescription:formProjectDescription,
+      projectGitHubLink:formProjectGitHubLink,
+      projectPublicLink:formProjectPublicLink
+    };
+    console.log(projectData);
+    createProject(projectData, function(project){
+    })
+  });
+}
 
 // =========================================
 //======actually we don't use it===========

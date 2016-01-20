@@ -21,6 +21,13 @@ var router = express.Router();
 
 var Otter = require('../../models/otter');
 
+
+router.get('/', function(req, res){
+  Otter.find({}, function(err, otters) {
+    res.json({ Otter: otters });
+  });
+});
+
 router.get('/profile', function(req, res){
   Otter.findOne({ id: req.user._id }, function(err, otter) {
     res.json({ Otter: otter });
@@ -104,18 +111,16 @@ router.post('/', function(req, res){
   });
 });
 
-// router.post('/:id/projects', function(req, res){
-//   var commentBody = req.body.comment || {};
-//   commentBody.username = req.user.username;
-//   var haikuID = req.params.id;
-//   Haiku.findById(haikuID, function(err, databaseHaiku){
-//     var commentNumber = databaseHaiku.comments.push(commentBody);
-//     databaseHaiku.save(function(err){
-//       // Just cause I wanted to send back the comment....
-//       res.json({comment: databaseHaiku.comments[commentNumber-1]});
-//     });
-//   });
-// });
+
+router.post('/projects', function(req, res){
+  var projectData = req.body.projectData || {};
+  Otter.findOne({ id: req.user._id }, function(err, dbOtter){
+    var project = dbOtter.projects.push(projectData);
+    dbOtter.save(function(err){
+      res.json(projectData);
+    });
+  });
+});
 
 //======aleksa staff ends===========
 
