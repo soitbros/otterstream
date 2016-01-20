@@ -71,13 +71,13 @@
       FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
 
-        FB.api('/me', {fields: 'id,birthday,bio,last_name,first_name' }, function(response) {
+        FB.api('/me', {fields: 'id,birthday,bio,last_name,first_name,picture' }, function(response) {
           console.log(response, "im heeeeere");
           $('#getData').find('input[name="name"]').val(response.first_name);
           $('#getData').find('input[name="lastname"]').val(response.last_name);
           $('#getData').find('input[name="bday"]').val(response.birthday);
           $('#getData').find('input[name="bio"]').val(response.bio);
-
+          $('#getData').find('input[name="img"]').val(response.picture.data.url);
         });
       });
       };
@@ -95,6 +95,13 @@
       // successful.  See statusChangeCallback() for when this call is made.
     </script>
 
+    <div
+      class="fb-like"
+      data-share="true"
+      data-width="450"
+      data-show-faces="true">
+    </div>
+    
 <!--===========end chris======== -->
 <!--=======clint=============-->
 <!-- <script>function tokenCaller() {
