@@ -9,4 +9,15 @@ router.get('/', function(req, res){
   }
 });
 
+
+// ====aleksa staff start=====
+router.get('/chat', function(req, res){
+  if(req.cookies.token){
+    res.render('chat');
+  } else {
+    res.render('index');
+  }
+});
+// =======aleksa staff ends=======
+
 module.exports = router;

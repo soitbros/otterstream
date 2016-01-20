@@ -4,15 +4,18 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var loadUser = require('./middleware/loadUser');
-// =====aleksa staff=====
 
+
+
+
+
+require('dotenv').load();
+
+var app = express();
+// ====aleksa staff=====
 var server = require('http').Server(app);
-
-// loading socket abilities
-// attaching them to our server
 var socketIo = require('socket.io');
 var io = socketIo(server);
-// socket routing event handling
 io.on('connection', function(socket){
   console.log('...new connection');
   socket.on('user message to server', function(data){
@@ -20,12 +23,7 @@ io.on('connection', function(socket){
   });
 });
 
-// =======aleksa stafff=========
-
-
-require('dotenv').load();
-
-var app = express();
+// =====aleksa staff ends=====
 
 app.set('view engine', 'ejs');
 
@@ -50,7 +48,7 @@ app.use('/api/otters', ottersRouter);
 app.use('/api/users', usersRouter);
 
 
-
-app.listen(3000, function(){
+//aleksa change app => server
+server.listen(3000, function(){
   console.log('...listening on 3000');
 })
