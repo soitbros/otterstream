@@ -1,0 +1,57 @@
+<script>
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+    } else if (response.status === 'not_authorized') {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+      window.location.href = '/profile';
+    });
+  }
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1499610890345471',
+    cookie     : true,
+    xfbml      : true,
+    version    : 'v2.2'
+  });
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+    FB.api('/me', {fields: 'id,birthday,bio,last_name,first_name,picture' }, function(response) {
+      console.log(response, "im heeeeere");
+      $('#getData').find('input[name="name"]').val(response.first_name);
+      $('#getData').find('input[name="lastname"]').val(response.last_name);
+      $('#getData').find('input[name="bday"]').val(response.birthday);
+      $('#getData').find('input[name="bio"]').val(response.bio);
+      $('#getData').find('input[name="img"]').val(response.picture.data.url);
+    });
+  });
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+
+<form id="log-out">
+  <button type="submit" value="log-out">Log Out</button>
+</form>

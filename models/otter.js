@@ -1,5 +1,18 @@
 var mongoose = require('mongoose');
 
+var blogSchema = mongoose.Schema({
+  blogBody: { type: String }
+}, { timestamps: true });
+
+var ProjectSchema = mongoose.Schema({
+  projectName: { type: String },
+  projectLanguage: { type: String },
+  projectImg: { type: String },
+  projectDescription: { type: String },
+  projectGitHubLink: { type: String },
+  projectPublicLink: { type: String }
+}, { timestamps: true });
+
 var otterSchema = mongoose.Schema({
   name: { type: String},
   lastname: { type: String },
@@ -27,18 +40,9 @@ var otterSchema = mongoose.Schema({
   graduate: { type: String },
   bio: { type: String },
   img: { type: String},
-  id: {type: String},
-  // projects: [ProjectSchema]
+  id: { type: String },
+  projects: [ProjectSchema],
+  blogs: [blogSchema]
 }, { timestamps: true });
-
-
-// var ProjectSchema = mongoose.Schema({
-//   projectName: { type: String },
-//   projectLanguage: { type: String },
-//   projectImg: { type: String },
-//   projectDescription: { type: String },
-//   projectGitHubLink: { type: String },
-//   projectPublicLink: { type: String }
-// }, { timestamps: true });
 
 module.exports = mongoose.model('Otter', otterSchema);

@@ -128,6 +128,7 @@ function makeUsers(){
   });
 }
 
+<<<<<<< HEAD
 $(function(){
   setLogInFormHandler();
   setProjectFormHandler();
@@ -150,6 +151,8 @@ $(function(){
 
 })
 
+=======
+>>>>>>> 1900c7c64481cc116c5819f2280f002e84e73928
 function createUser(otterData, callback){
   callback = callback || function(){};
   $.ajax({
@@ -257,6 +260,7 @@ function setUserFormHandler(){
   });
 }
 
+<<<<<<< HEAD
 function createProject(projectData, callback){
   callback = callback || function(){};
   $.ajax({
@@ -336,51 +340,83 @@ function setProjectFormHandler(){
   });
 }
 
-// =========================================
-//======actually we don't use it===========
-// ========================================
-// function getAllImg(callback){
-//   console.log('aaaaa');
-//   callback = callback || function(){}
-//     $.ajax({
-//       url: '/api/otters',
-//       success: function(data){
-//         console.log(data.Otter + "wooow");
-//         var images = data.Otter;
-//         callback(images);
-//       }
-//     });
-// }
-//
-//   function renderImage(image){
-//     var images = image.img;
-//     console.log("file reader   "+images);
-//     var $el = ('#imgFromDB');
-//       var $img = ( $('<img>').attr('src', images) );
-//       $( "#imgFromDB" ).append( $img );
-//
-//   }
-//
-//   function updateImageAndViews(){
-//     console.log('updateImageAndViews');
-//     getAllImg(function(images){
-//       console.log('here');
-//       var $list = $('#imgFromDB');
-//       renderImageList(images, $list)
-//     })
-//   }
-//
-//   function renderImageList(images, $list){
-//     $list.empty();
-//     var image;
-//     for(var i = 0; i<images.length; i++){
-//       image = images[i];
-//       $imageView = renderImage(image);
-//       $list.append($imageView);
-//     }
-//   }
-// ===================================
-// =====staff we don't use it ends=====
-// =====================================
+function createProject(projectData, callback){
+  callback = callback || function(){};
+  $.ajax({
+    url: '/api/otters/projects',
+    method: 'post',
+    data: {projectData},
+    success: function(data){
+      var project = data.project;
+      callback(project);
+    }
+  });
+}
 
-  //=========aleksa staff ends=========
+function renderProject(project){
+  var $el = $('<div>').addClass('project');
+  $el.append( $('<div>').addClass('projectName').text(project.projectName) );
+  $el.append( $('<div>').addClass('projectLanguage').text(project.projectLanguage) );
+  $el.append( $('<img>').addClass('projectImg').attr('src' , projectImg) );
+  $el.append( $('<div>').addClass('projectDescription').text(project.projectDescription) );
+  $el.append( $('<div>').addClass('projectGitHubLink').text(project.projectGitHubLink) );
+  $el.append( $('<div>').addClass('projectPublicLink').text(project.projectPublicLink) );
+
+  $('.profile').append($el);
+}
+
+function setBlogFormHandler(){
+  $('form#getBlogData').on('submit', function(e){
+    e.preventDefault();
+    var formBlogBody = $(this).find('textarea[name="blogBody"]').val();
+    var blogData = {
+      blogBody:formBlogBody,
+    };
+    createBlog(blogData, function(blog){
+    })
+  });
+}
+
+function createBlog(blogData, callback){
+  callback = callback || function(){};
+  $.ajax({
+    url: '/api/otters/blogs',
+    method: 'post',
+    data: {blogData},
+    success: function(data){
+      var blog = data.blog;
+      callback(blog);
+    }
+  });
+}
+
+function renderBlog(blog){
+  var $el = $('<div>').addClass('project');
+  $el.append( $('<div>').addClass('blogBody').html(blog.blogBody) );
+
+  $('.profile').append($el);
+}
+
+
+
+$(function(){
+  setLogInFormHandler();
+  setProjectFormHandler();
+  setBlogFormHandler();
+  setLogOutHandler();
+  makeUsers();
+
+  function readImage() {
+      if ( this.files && this.files[0] ) {
+          var FR = new FileReader();
+          FR.onload = function(e) {
+               $('#img').attr( "src", e.target.result );
+               $('#url').val(e.target.result);
+          };
+          FR.readAsDataURL( this.files[0] );
+      }
+  }
+  $("#asd").change( readImage );
+  setUserFormHandler();
+
+})
