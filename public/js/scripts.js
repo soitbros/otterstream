@@ -128,7 +128,6 @@ function makeUsers(){
   });
 }
 
-<<<<<<< HEAD
 $(function(){
   setLogInFormHandler();
   setProjectFormHandler();
@@ -151,8 +150,6 @@ $(function(){
 
 })
 
-=======
->>>>>>> 1900c7c64481cc116c5819f2280f002e84e73928
 function createUser(otterData, callback){
   callback = callback || function(){};
   $.ajax({
@@ -193,7 +190,6 @@ function createUser(otterData, callback){
     }
   });
 }
-
 
 function setUserFormHandler(){
   $('form#getData').on('submit', function(e){
@@ -260,7 +256,6 @@ function setUserFormHandler(){
   });
 }
 
-<<<<<<< HEAD
 function createProject(projectData, callback){
   callback = callback || function(){};
   $.ajax({
