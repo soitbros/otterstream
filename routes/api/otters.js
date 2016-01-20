@@ -102,7 +102,20 @@ router.post('/', function(req, res){
       });
     });
   });
-})
+});
+
+// router.post('/:id/projects', function(req, res){
+//   var commentBody = req.body.comment || {};
+//   commentBody.username = req.user.username;
+//   var haikuID = req.params.id;
+//   Haiku.findById(haikuID, function(err, databaseHaiku){
+//     var commentNumber = databaseHaiku.comments.push(commentBody);
+//     databaseHaiku.save(function(err){
+//       // Just cause I wanted to send back the comment....
+//       res.json({comment: databaseHaiku.comments[commentNumber-1]});
+//     });
+//   });
+// });
 
 //======aleksa staff ends===========
 
