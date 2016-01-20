@@ -75,7 +75,7 @@ function   makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,
   $el.append( $('<div>').addClass('favoriteFood').text(favoriteFood) );
   $el.append( $('<div>').addClass('favoriteTvShow').text(favoriteTvShow) );
   $el.append( $('<div>').addClass('gender').text(gender) );
-  $el.append( $('<div>').addClass('gitHub').text(gitHub) );
+  $el.append( $('<a>').addClass('gitHub').text("http://www.github.com/" + gitHub) );
   $el.append( $('<div>').addClass('linkedIn').text(linkedIn) );
   $el.append( $('<div>').addClass('website').text(website) );
   $el.append( $('<div>').addClass('facebook').text(facebook) );
@@ -127,28 +127,6 @@ function makeUsers(){
     }
   });
 }
-
-$(function(){
-  setLogInFormHandler();
-  setProjectFormHandler();
-  setBlogFormHandler();
-  setLogOutHandler();
-  makeUsers();
-
-  function readImage() {
-      if ( this.files && this.files[0] ) {
-          var FR = new FileReader();
-          FR.onload = function(e) {
-               $('#img').attr( "src", e.target.result );
-               $('#url').val(e.target.result);
-          };
-          FR.readAsDataURL( this.files[0] );
-      }
-  }
-  $("#asd").change( readImage );
-  setUserFormHandler();
-
-})
 
 function createUser(otterData, callback){
   callback = callback || function(){};
