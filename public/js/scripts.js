@@ -91,6 +91,7 @@ function   makeDiv(id,name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCi
   var $el = $('<div>').addClass('container');
   $el.append( $('<div>').addClass('name').text(name + ' ' + lastname) );
   $el.append( $('<div>').addClass('bday').text(bday) );
+  $el.append( $('<div>').addClass('zodiac').text(zodiac) );
   $el.append( $('<div>').addClass('bloodtype').text(bloodtype) );
   $el.append( $('<div>').addClass('placeOfBirth').text(placeOfBirth) );
   $el.append( $('<div>').addClass('currentCity').text(currentCity) );
@@ -230,7 +231,7 @@ function setUserFormHandler(){
     var formName = $(this).find('input[name="name"]').val();
     var formLastName = $(this).find('input[name="lastname"]').val();
     var formBday = $(this).find('input[name="bday"]').val();
-    var formZodiak = $(this).find('select[name="zodiak"]').val();
+    var formZodiac = $(this).find('select[name="zodiac"]').val();
     var formBloodtype = $(this).find('input[name="bloodtype"]').val();
     var formPlaceOfBirth = $(this).find('input[name="placeOfBirth"]').val();
     var formCurrentCity = $(this).find('input[name="currentCity"]').val();
@@ -258,7 +259,7 @@ function setUserFormHandler(){
       name:formName,
       lastname:formLastName,
       bday:formBday,
-      zodiak:formZodiak,
+      zodiac:formZodiac,
       bloodtype:formBloodtype,
       placeOfBirth:formPlaceOfBirth,
       currentCity:formCurrentCity,

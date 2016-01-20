@@ -4,7 +4,7 @@ var otterSchema = mongoose.Schema({
   name: { type: String},
   lastname: { type: String },
   bday: { type: String },
-  zodiak: { type: String },
+  zodiac: { type: String },
   bloodtype: { type: String },
   placeOfBirth: { type: String },
   currentCity: { type: String },
