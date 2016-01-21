@@ -24,7 +24,7 @@ body {
   left: 30%;
   height: 20em;
   width: 40%;
-  box-shadow: 10px 5px 0px black;
+  box-shadow: 10px 5px 5px black;
   background-color: yellow;
 }
 
@@ -34,6 +34,6 @@ body {
   top: 20%;
   left: 30%;
   height: 20em;
-  box-shadow: 10px 5px 0px black;
+  box-shadow: 10px 5px 5px black;
   background-color: red;
 }
