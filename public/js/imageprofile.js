@@ -3,7 +3,7 @@ $(function(){
 })
 
 function userProfile(){
-  $('.list img').on('click', function(e){
+  $('body').on('click', '.img', function(e){
     e.preventDefault();
     console.log(this);
   })
