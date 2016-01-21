@@ -99,7 +99,6 @@ function renderProjectList(otters, $projectList){
   for (var i = 0; i < otters.length; i++) {
     project = otters[i].projects
     for (k = 0 ; k < project.length; k++) {
-      console.log(project);
       $projectView = renderProject(project);
       $projectList.append($projectView);
     }
@@ -114,7 +113,6 @@ function renderBlogList(otters, $blogList){
   for (var i = 0; i < otters.length; i++) {
     blog = otters[i].blogs
     for ( j = 0 ; j < blog.length; j++) {
-      console.log(blog);
       $blogView = renderBlog(blog);
       $blogList.append($blogView);
     }
@@ -125,14 +123,14 @@ function updateViews(){
   getAllProfiles(function(otters){
     var $list = $('.profilelist');
     var $projectList = $('.projectlist');
-    var $blogList = $('.bloglist');
+    var $blogList = $('.globalblog');
     renderProfileList(otters, $list);
     renderProjectList(otters, $projectList);
     renderBlogList(otters, $blogList);
   });
 }
 
-function makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img){
+function makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img,projects,blogs){
   var $el = $('<div>').addClass('container');
   $el.append( $('<img>').addClass('img').attr('src' , img) );
   $el.append( $('<div>').addClass('name').text(name + ' ' + lastname) );
@@ -159,8 +157,32 @@ function makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,fa
   $el.append( $('<div>').addClass('tumblr').html("<a target='_blank' href='https://" + tumblr + ".tumblr.com/'> Tumblr </a>") );
   $el.append( $('<div>').addClass('website').html("<a target='_blank' href='http://" + website + "'> Website </a>") );
   $el.append( $('<div>').addClass('bio').text(bio) );
+  for (var i = 0; i < projects.length; i++) {
+    var project = projects[i];
+    var $proj = $('<div>').addClass('profileproject');
+    $proj.append( $('<div>').addClass('projectName').text(project.projectName) );
+    $proj.append( $('<img>').addClass('projectImg').attr('src' , project.projectImg) );
+    $('.profileprojects').append($proj);
+  }
+  for (var i = 0; i < blogs.length; i++) {
+    var blog = blogs[i];
+    var $blog = $('<div>').addClass('profileblogpost');
+    $blog.append( $('<div>').addClass('blogBody').html(blog.blogBody) );
+    $('.profileblog').append($blog);
+  }
 
-  $('.profile').append($el);
+  $('.profilebody').append($el);
+}
+
+function makeDivProject(project){
+  var $el = $('<div>').addClass('projectSum');
+  $el.append( $('<div>').addClass('projectName').text(project[k].projectName) );
+  $el.append( $('<div>').addClass('projectLanguage').text(project[k].projectLanguage) );
+  $el.append( $('<img>').addClass('projectImg').attr('src' , project[k].projectImg) );
+  $el.append( $('<div>').addClass('projectDescription').text(project[k].projectDescription) );
+  $el.append( $('<div>').addClass('projectGitHubLink').text(project[k].projectGitHubLink) );
+  $el.append( $('<div>').addClass('projectPublicLink').text(project[k].projectPublicLink) );
+  $('.project').append($el);
 }
 
 function makeProfile(){
@@ -194,7 +216,9 @@ function makeProfile(){
       var graduate = data.Otter.graduate;
       var bio = data.Otter.bio;
       var img = data.Otter.img;
-      makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img);
+      var projects = data.Otter.projects;
+      var blogs = data.Otter.blogs;
+      makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img,projects,blogs);
     }
   });
 }
@@ -367,13 +391,14 @@ function createProject(projectData, callback){
 }
 
 function renderProject(project){
-  var $el = $('<div>').addClass('project');
+  var $el = $('<div>').addClass('projectSum');
   $el.append( $('<div>').addClass('projectName').text(project[k].projectName) );
-  $el.append( $('<div>').addClass('projectLanguage').text(project[k].projectLanguage) );
-  $el.append( $('<div>').addClass('projectDescription').text(project[k].projectDescription) );
-  $el.append( $('<div>').addClass('projectGitHubLink').text(project[k].projectGitHubLink) );
-  $el.append( $('<div>').addClass('projectPublicLink').text(project[k].projectPublicLink) );
-  return $el;
+  // $el.append( $('<div>').addClass('projectLanguage').text(project[k].projectLanguage) );
+  $el.append( $('<img>').addClass('projectImg').attr('src' , project[k].projectImg) );
+  // $el.append( $('<div>').addClass('projectDescription').text(project[k].projectDescription) );
+  // $el.append( $('<div>').addClass('projectGitHubLink').text(project[k].projectGitHubLink) );
+  // $el.append( $('<div>').addClass('projectPublicLink').text(project[k].projectPublicLink) );
+  $('.projectlist').append($el);
 }
 
 function setBlogFormHandler(){
@@ -402,11 +427,9 @@ function createBlog(blogData, callback){
 }
 
 function renderBlog(blog){
-  console.log(blog[j].blogBody);
-  var $el = $('<div>').addClass('project');
+  var $el = $('<div>').addClass('globalblogposts');
   $el.append( $('<div>').addClass('blogBody').html(blog[j].blogBody) );
-
-  $('.profile').append($el);
+  return $el;
 }
 
 
@@ -425,6 +448,20 @@ $(function(){
 
   $(".closeprojectform").on('click', function(){
     $('.projectform').toggle();
+  })
+
+  $(".toggleprojectlist").on('click', function(){
+    $('.projectlist').show();
+    $('.profilelist').hide();
+    $('.profile').hide();
+    $('.project').hide();
+  })
+
+  $(".toggleprofilelist").on('click', function(){
+    $('.profilelist').show();
+    $('.profile').hide();
+    $('.projectlist').hide();
+    $('.project').hide();
   })
 
   function readImage() {

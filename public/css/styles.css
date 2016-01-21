@@ -1,13 +1,33 @@
 body {
-  background-color: lightblue;
+  background-color: darkturquoise;
 }
 
 .profilelist img {
   height: 100px;
 }
 
+.profilelist {
+  display: none;
+}
+
+.project {
+  display: none;
+}
+
+.projectlist {
+  display: none;
+}
+
+.projectlist * {
+  display: inline-block;
+}
+
 .profilelist * {
   display: inline-block;
+}
+
+.profileform {
+  display: none;
 }
 
 .projectform {
@@ -17,4 +37,5 @@ body {
   left: 30%;
   height: 20em;
   box-shadow: 10px 5px 0px black;
+  background-color: red;
 }

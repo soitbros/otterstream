@@ -9,33 +9,34 @@
     <% include ./partials/header %>
 
     <div class="main">
-      <div class="openprojectform">Add Project</div>
-    </div>
-
-    <div class="profileform">
-      <% include ./partials/profileForm %>
-      <div class="closeprojectform">Close</div>
-    </div>
-
-    <div class="projectform">
-      <% include ./partials/projects %>
-    </div>
-
-    <% include ./partials/blog %>
-
-    <div class="profile">
-      <div class="projects">
-
+      <div class="toggleprofilelist">Show All Profiles</div>
+      <div class="toggleprojectlist">Show All Projects</div>
+      <div class="profile">
+        <div class="profileform">
+          <% include ./partials/profileForm %>
+        </div>
+        <div class="profilehead">
+          <div class="openprojectform">Add Project</div>
+          <div class="projectform">
+            <% include ./partials/projects %>
+            <div class="closeprojectform">Close</div>
+          </div>
+        </div>
+        <div class="profilebody"></div>
+        <div class="profilefooter">
+          <div class="profileprojects"></div>
+          <div class="profileblog">
+            <% include ./partials/blog %>
+          </div>
+        </div>
       </div>
-      <div class="blog">
-
+      <div class="profilelist">
+        <div class="globalblog"></div>
       </div>
+      <div class="project"></div>
+      <div class="projectlist"></div>
+      <div class="globalblogposts"></div>
     </div>
-    <div class="profilelist">
 
-    </div>
-    <div class="projectlist">
-
-    </div>
   </body>
 </html>
