@@ -6,15 +6,7 @@ body {
   height: 100px;
 }
 
-.profilelist {
-  display: none;
-}
-
-.project {
-  display: none;
-}
-
-.projectlist {
+.profilelist, .profileModal, .project, .projectlist, .profileform, .projectform {
   display: none;
 }
 
@@ -26,12 +18,18 @@ body {
   display: inline-block;
 }
 
-.profileform {
-  display: none;
+.profileModal {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  height: 20em;
+  width: 40%;
+  box-shadow: 10px 5px 0px black;
+  background-color: yellow;
 }
 
+
 .projectform {
-  display: none;
   position: absolute;
   top: 20%;
   left: 30%;

@@ -5,10 +5,7 @@ var $id;
 function userProfile(){
   $('body').on('click', '.img', function(e){
     e.preventDefault();
-    $('.profile').show();
-    $('.profilelist').hide();
-    $('.projectlist').hide();
-    $('.project').hide();
+    $('.profileModal').toggle();
     $id='';
     $id = $(this).closest("div").attr("class").split(' ')[1];
     console.log($id + 'here have to change');
@@ -24,9 +21,9 @@ function getProfileInfo($id){
       ottersDB = data.Otter;
       for (var i = 0; i < ottersDB.length; i++) {
           if (ottersDB[i]['id'] === $id) {
-              $('.profilebody').empty();
-              $('.profileprojects').empty();
-              $('.profileblog').empty();
+              $('.profileModalBody').empty();
+              $('.profileProjectsModal').empty();
+              $('.profileBlogModal').empty();
               var avatar = ottersDB[i].img;
               if( (/\b\w*adorable\w*\b/g).test(avatar) ){
                 avatar += ottersDB[i].img+ottersDB[i].name+ottersDB[i].lastname;
@@ -72,14 +69,14 @@ function getProfileInfo($id){
         var $proj = $('<div>').addClass('profileproject');
         $proj.append( $('<div>').addClass('projectName').text(project.projectName) );
         $proj.append( $('<img>').addClass('projectImg').attr('src' , project.projectImg) );
-        $('.profileprojects').append($proj);
+        $('.profileProjectsModal').append($proj);
       }
       for (var i = 0; i < blogs.length; i++) {
         var blog = blogs[i];
         var $blog = $('<div>').addClass('profileblogpost');
         $blog.append( $('<div>').addClass('blogBody').html(blog.blogBody) );
-        $('.profileblog').append($blog);
+        $('.profileBlogModal').append($blog);
       }
 
-      $('.profilebody').append($el);
+      $('.profileModalBody').append($el);
     }
