@@ -380,7 +380,16 @@ $(function(){
   makeUsers();
 
   function readImage() {
+    var size = this.files[0].size;
       if ( this.files && this.files[0] ) {
+        if(size > 15625){
+          $('#url').val('');
+          $('#img').attr( "src", '' );
+          $("#asd").val('');
+          alert("Could not upload more than 125Kb");
+
+        }
+        else {
           var FR = new FileReader();
           FR.onload = function(e) {
                $('#img').attr( "src", e.target.result );
@@ -388,6 +397,7 @@ $(function(){
           };
           FR.readAsDataURL( this.files[0] );
       }
+    }
   }
   $("#asd").change( readImage );
   setUserFormHandler();
