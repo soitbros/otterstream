@@ -159,7 +159,7 @@ function makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,fa
   $el.append( $('<div>').addClass('bio').text(bio) );
   for (var i = 0; i < projects.length; i++) {
     var project = projects[i];
-    var $proj = $('<div>').addClass('profileproject');
+    var $proj = $('<div>').addClass('profileproject ' + project._id);
     $proj.append( $('<div>').addClass('projectName').text(project.projectName) );
     $proj.append( $('<img>').addClass('projectImg').attr('src' , project.projectImg) );
     $('.profileprojects').append($proj);
@@ -175,7 +175,7 @@ function makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,fa
 }
 
 function makeDivProject(project){
-  var $el = $('<div>').addClass('projectSum');
+  var $el = $('<div>').addClass('projectSum '+project[k]._id);
   $el.append( $('<div>').addClass('projectName').text(project[k].projectName) );
   $el.append( $('<div>').addClass('projectLanguage').text(project[k].projectLanguage) );
   $el.append( $('<img>').addClass('projectImg').attr('src' , project[k].projectImg) );
