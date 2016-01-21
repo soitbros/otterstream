@@ -39,11 +39,53 @@ function editProfile(otterData, callback){
   });
 }
 
-function setProfileFormHandler(){
-  $('form#getData').on('submit', function(e){
+
+function editProfile(otterData, callback){
+  callback = callback || function(){};
+  $.ajax({
+    method: 'get',
+    data: {
+      name: otterData.name,
+      img: otterData.img,
+      lastname:otterData.lastname,
+      bday:otterData.bday,
+      zodiac:otterData.zodiac,
+      bloodtype:otterData.bloodtype,
+      placeOfBirth:otterData.placeOfBirth,
+      currentCity:otterData.currentCity,
+      favoriteBook:otterData.favoriteBook,
+      favoriteSong:otterData.favoriteSong,
+      favoriteMovie:otterData.favoriteMovie,
+      favoriteFood:otterData.favoriteFood,
+      favoriteTvShow:otterData.favoriteTvShow,
+      gender:otterData.gender,
+      gitHub:otterData.gitHub,
+      linkedIn:otterData.linkedIn,
+      website:otterData.website,
+      facebook:otterData.facebook,
+      twitter:otterData.twitter,
+      instagram:otterData.instagram,
+      tumblr:otterData.tumblr,
+      languages:otterData.languages,
+      coding:otterData.coding,
+      group:otterData.group,
+      graduate:otterData.graduate,
+      bio:otterData.bio,
+    },
+    url: '/api/otters',
+    success: function(data){
+      var img = data.img;
+      callback(img);
+      setProfileFormHandler(data);
+    }
+  });
+
+function setProfileFormHandler(data){
+  $('form#editData').on('submit', function(e){
     e.preventDefault();
+    console.log(data.name);
     $('#img').attr('src','');
-    var formName = $(this).find('input[name="name"]').val();
+    var formName = $(this).find('input[name="name"]').val(data.name);
     var formLastName = $(this).find('input[name="lastname"]').val();
     var formBday = $(this).find('input[name="bday"]').val();
     var formZodiac = $(this).find('select[name="zodiac"]').val();
