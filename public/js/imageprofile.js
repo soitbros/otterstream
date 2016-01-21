@@ -5,6 +5,10 @@ var $id;
 function userProfile(){
   $('body').on('click', '.img', function(e){
     e.preventDefault();
+    $('.profile').show();
+    $('.profilelist').hide();
+    $('.projectlist').hide();
+    $('.project').hide();
     $id='';
     $id = $(this).closest("div").attr("class").split(' ')[1];
     console.log($id + 'here have to change');
@@ -20,12 +24,14 @@ function getProfileInfo($id){
       ottersDB = data.Otter;
       for (var i = 0; i < ottersDB.length; i++) {
           if (ottersDB[i]['id'] === $id) {
-              $('.profileShow').empty();
+              $('.profilebody').empty();
+              $('.profileprojects').empty();
+              $('.profileblog').empty();
               var avatar = ottersDB[i].img;
               if( (/\b\w*adorable\w*\b/g).test(avatar) ){
                 avatar += ottersDB[i].img+ottersDB[i].name+ottersDB[i].lastname;
               }
-              showProfile(ottersDB[i].name,ottersDB[i].lastname,ottersDB[i].bday,ottersDB[i].zodiac,ottersDB[i].bloodtype,ottersDB[i].placeOfBirth,ottersDB[i].currentCity,ottersDB[i].favoriteBook,ottersDB[i].favoriteSong,ottersDB[i].favoriteMovie,ottersDB[i].favoriteFood,ottersDB[i].favoriteTvShow,ottersDB[i].gender,ottersDB[i].gitHub,ottersDB[i].linkedIn,ottersDB[i].website,ottersDB[i].facebook,ottersDB[i].twitter,ottersDB[i].instagram,ottersDB[i].tumblr,ottersDB[i].languages,ottersDB[i].coding,ottersDB[i].group,ottersDB[i].graduate,ottersDB[i].bio,ottersDB[i].img);
+              showProfile(ottersDB[i].name,ottersDB[i].lastname,ottersDB[i].bday,ottersDB[i].zodiac,ottersDB[i].bloodtype,ottersDB[i].placeOfBirth,ottersDB[i].currentCity,ottersDB[i].favoriteBook,ottersDB[i].favoriteSong,ottersDB[i].favoriteMovie,ottersDB[i].favoriteFood,ottersDB[i].favoriteTvShow,ottersDB[i].gender,ottersDB[i].gitHub,ottersDB[i].linkedIn,ottersDB[i].website,ottersDB[i].facebook,ottersDB[i].twitter,ottersDB[i].instagram,ottersDB[i].tumblr,ottersDB[i].languages,ottersDB[i].coding,ottersDB[i].group,ottersDB[i].graduate,ottersDB[i].bio,ottersDB[i].img,ottersDB[i].projects,ottersDB[i].blogs);
               return;
           }
       }
@@ -34,11 +40,11 @@ function getProfileInfo($id){
       })
     }
 
-    function showProfile(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img){
-      var $el = $('<div>').addClass('profileShow');
-      $el.append( $('<div>').addClass('name').text(name+' '+lastname) );
-      $el.append( $('<div>').addClass('bday').text(bday) );
+    function showProfile(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img,projects,blogs){
+      var $el = $('<div>').addClass('container');
       $el.append( $('<img>').addClass('img').attr('src' , img) );
+      $el.append( $('<div>').addClass('name').text(name + ' ' + lastname) );
+      $el.append( $('<div>').addClass('bday').text(bday) );
       $el.append( $('<div>').addClass('gender').text(gender) );
       $el.append( $('<div>').addClass('zodiac').text(zodiac) );
       $el.append( $('<div>').addClass('bloodtype').text(bloodtype) );
@@ -61,6 +67,19 @@ function getProfileInfo($id){
       $el.append( $('<div>').addClass('tumblr').html("<a target='_blank' href='https://" + tumblr + ".tumblr.com/'> Tumblr </a>") );
       $el.append( $('<div>').addClass('website').html("<a target='_blank' href='http://" + website + "'> Website </a>") );
       $el.append( $('<div>').addClass('bio').text(bio) );
+      for (var i = 0; i < projects.length; i++) {
+        var project = projects[i];
+        var $proj = $('<div>').addClass('profileproject');
+        $proj.append( $('<div>').addClass('projectName').text(project.projectName) );
+        $proj.append( $('<img>').addClass('projectImg').attr('src' , project.projectImg) );
+        $('.profileprojects').append($proj);
+      }
+      for (var i = 0; i < blogs.length; i++) {
+        var blog = blogs[i];
+        var $blog = $('<div>').addClass('profileblogpost');
+        $blog.append( $('<div>').addClass('blogBody').html(blog.blogBody) );
+        $('.profileblog').append($blog);
+      }
 
-      $('body').append($el);
+      $('.profilebody').append($el);
     }
