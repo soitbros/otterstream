@@ -369,6 +369,7 @@ function renderProject(project){
   var $el = $('<div>').addClass('project');
   $el.append( $('<div>').addClass('projectName').text(project[k].projectName) );
   $el.append( $('<div>').addClass('projectLanguage').text(project[k].projectLanguage) );
+  $el.append( $('<img>').addClass('projectimg').attr('src' , project[k].projectImg) );
   $el.append( $('<div>').addClass('projectDescription').text(project[k].projectDescription) );
   $el.append( $('<div>').addClass('projectGitHubLink').text(project[k].projectGitHubLink) );
   $el.append( $('<div>').addClass('projectPublicLink').text(project[k].projectPublicLink) );
