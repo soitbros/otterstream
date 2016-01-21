@@ -91,12 +91,14 @@ function renderProfileList(otters, $list){
   }
 }
 
+var k;
+
 function renderProjectList(otters, $projectList){
   $projectList.empty();
   var project;
   for (var i = 0; i < otters.length; i++) {
     project = otters[i].projects
-    for (var j = 0 ; j < project.length; j++) {
+    for (k = 0 ; k < project.length; k++) {
       console.log(project);
       $projectView = renderProject(project);
       $projectList.append($projectView);
@@ -104,12 +106,14 @@ function renderProjectList(otters, $projectList){
   }
 }
 
+var j;
+
 function renderBlogList(otters, $blogList){
   $blogList.empty();
   var blog;
   for (var i = 0; i < otters.length; i++) {
     blog = otters[i].blogs
-    for (var j = 0 ; j < blog.length; j++) {
+    for ( j = 0 ; j < blog.length; j++) {
       console.log(blog);
       $blogView = renderBlog(blog);
       $blogList.append($blogView);
@@ -326,13 +330,6 @@ function setBlogFormHandler(){
   });
 }
 
-function renderBlog(blog){
-  var $el = $('<div>').addClass('project');
-  $el.append( $('<div>').addClass('blogBody').html(blog.blogBody) );
-
-  $('.profile').append($el);
-}
-
 function setProjectFormHandler(){
   $('form#getProjectData').on('submit', function(e){
     e.preventDefault();
@@ -370,12 +367,11 @@ function createProject(projectData, callback){
 
 function renderProject(project){
   var $el = $('<div>').addClass('project');
-  $el.append( $('<div>').addClass('projectName').text(project.projectName) );
-  $el.append( $('<div>').addClass('projectLanguage').text(project.projectLanguage) );
-  // $el.append( $('<img>').addClass('projectImg').attr('src' , projectImg) );
-  $el.append( $('<div>').addClass('projectDescription').text(project.projectDescription) );
-  $el.append( $('<div>').addClass('projectGitHubLink').text(project.projectGitHubLink) );
-  $el.append( $('<div>').addClass('projectPublicLink').text(project.projectPublicLink) );
+  $el.append( $('<div>').addClass('projectName').text(project[k].projectName) );
+  $el.append( $('<div>').addClass('projectLanguage').text(project[k].projectLanguage) );
+  $el.append( $('<div>').addClass('projectDescription').text(project[k].projectDescription) );
+  $el.append( $('<div>').addClass('projectGitHubLink').text(project[k].projectGitHubLink) );
+  $el.append( $('<div>').addClass('projectPublicLink').text(project[k].projectPublicLink) );
   return $el;
 }
 
@@ -405,8 +401,9 @@ function createBlog(blogData, callback){
 }
 
 function renderBlog(blog){
+  console.log(blog[j].blogBody);
   var $el = $('<div>').addClass('project');
-  $el.append( $('<div>').addClass('blogBody').html(blog.blogBody) );
+  $el.append( $('<div>').addClass('blogBody').html(blog[j].blogBody) );
 
   $('.profile').append($el);
 }
