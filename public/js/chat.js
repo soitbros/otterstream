@@ -1,4 +1,4 @@
-var socket = io.connect('localhost:3000');
+var socket = io.connect(process.env.PORT || 'localhost:3000');
 var $name='';
 var $img;
 function GetName(){

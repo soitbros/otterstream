@@ -27,7 +27,7 @@ io.on('connection', function(socket){
 
 app.set('view engine', 'ejs');
 
-mongoose.connect('mongodb://localhost/otterstream');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/otterstream');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
@@ -49,6 +49,6 @@ app.use('/api/users', usersRouter);
 
 
 //aleksa change app => server
-server.listen(3000, function(){
+server.listen(process.env.PORT || 3000, function(){
   console.log('...listening on 3000');
 })
