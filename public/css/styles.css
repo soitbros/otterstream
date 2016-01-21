@@ -35,12 +35,23 @@ body {
 
 .profileimg {
   height: 550px;
+  background-color: lightgray;
+}
+
+.namebar {
+  background-color: lightslategray;
 }
 
 .biodeets {
   height: 550px;
+  background-color: darkgray;
 }
 
 .persondeets {
   text-align: right;
+  background-color: darkgray;
+}
+
+.profdeets {
+  background-color: lightgray;
 }

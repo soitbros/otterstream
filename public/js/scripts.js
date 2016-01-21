@@ -51,9 +51,7 @@ function renderProfile(otter){
   var $el = $('<div>').addClass('container ' + otter.id );
   $el.append( $('<img>').addClass('list img').attr('src' , otter.img) );
   $el.append( $('<div>').addClass('list name').text(otter.name + ' ' + otter.lastname) );
-
   $('.profilelist').append($el);
-
 }
 
 function renderProfileList(otters, $list){
@@ -109,8 +107,8 @@ function makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,fa
   var $el = $('<div>').addClass('container');
   var biorow = $('<div>').addClass('row align-center');
   var bioDeets = $('<div>').addClass('biodeets large-5 column');
-  $el.append( $('<div>').addClass('large-9 large-offset-3 column row').append($('<h1>').addClass('name').html( name + ' ' + lastname + '<h4>' + group + ' ' + graduate + '</h4>') ));
-  $el.append( biorow.append($('<img>').addClass('profileimg large-6 column').attr('src' , img) ));
+  $el.append( $('<div>').addClass('namebar large-6 large-offset-3 column row').append($('<h1>').addClass('name').html( name + ' ' + lastname + '<h4>' + group + ' ' + graduate + '</h4>') ));
+  $el.append( biorow.append($('<img>').addClass('profileimg large-5 column').attr('src' , img) ));
   $el.append( biorow.append(bioDeets.append($('<div>').addClass('bday').text('Birthdate: ' + bday) )));
   $el.append( biorow.append(bioDeets.append($('<div>').addClass('gender').text('Gender: ' + gender) )));
   $el.append( biorow.append(bioDeets.append($('<div>').addClass('zodiac').text('Zodiac Sign: ' + zodiac) )));
