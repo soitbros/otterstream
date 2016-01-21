@@ -55,44 +55,111 @@ function setLogOutHandler(){
     e.preventDefault();
     $.removeCookie('token');
     FB.logout(function(response) {
-  console.log('user is now logged-out');
-});
+      console.log('user is now logged-out');
+    });
     window.location.href = '/';
   });
 };
 
-function   makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img){
+function getAllProfiles(callback){
+  callback = callback || function(){};
+  $.ajax({
+    url: '/api/otters',
+    success: function(data){
+      var otters = data.Otter;
+      callback(otters);
+    }
+  });
+}
+
+function renderProfile(otter){
   var $el = $('<div>').addClass('container');
+  $el.append( $('<img>').addClass('list img').attr('src' , otter.img) );
+  $el.append( $('<div>').addClass('list name').text(otter.name + ' ' + otter.lastname) );
+
+  $('.profilelist').append($el);
+
+}
+
+function renderProfileList(otters, $list){
+  $list.empty();
+  var otter;
+  for (var i = 0; i < otters.length; i++) {
+    otter = otters[i];
+    $profileView = renderProfile(otter);
+    $list.append($profileView);
+  }
+}
+
+function renderProjectList(otters, $projectList){
+  $projectList.empty();
+  var project;
+  for (var i = 0; i < otters.length; i++) {
+    project = otters[i].projects
+    for (var j = 0 ; j < project.length; j++) {
+      console.log(project);
+      $projectView = renderProject(project);
+      $projectList.append($projectView);
+    }
+  }
+}
+
+function renderBlogList(otters, $blogList){
+  $blogList.empty();
+  var blog;
+  for (var i = 0; i < otters.length; i++) {
+    blog = otters[i].blogs
+    for (var j = 0 ; j < blog.length; j++) {
+      console.log(blog);
+      $blogView = renderBlog(blog);
+      $blogList.append($blogView);
+    }
+  }
+}
+
+function updateViews(){
+  getAllProfiles(function(otters){
+    var $list = $('.profilelist');
+    var $projectList = $('.projectlist');
+    var $blogList = $('.bloglist');
+    renderProfileList(otters, $list);
+    renderProjectList(otters, $projectList);
+    renderBlogList(otters, $blogList);
+  });
+}
+
+function makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img){
+  var $el = $('<div>').addClass('container');
+  $el.append( $('<img>').addClass('img').attr('src' , img) );
   $el.append( $('<div>').addClass('name').text(name + ' ' + lastname) );
   $el.append( $('<div>').addClass('bday').text(bday) );
+  $el.append( $('<div>').addClass('gender').text(gender) );
   $el.append( $('<div>').addClass('zodiac').text(zodiac) );
   $el.append( $('<div>').addClass('bloodtype').text(bloodtype) );
-  $el.append( $('<div>').addClass('placeOfBirth').text(placeOfBirth) );
-  $el.append( $('<div>').addClass('currentCity').text(currentCity) );
+  $el.append( $('<div>').addClass('placeOfBirth').html("<img src='http://maps.googleapis.com/maps/api/staticmap?center=" + placeOfBirth + "&size=320x200&zoom=11&style=element:geometry.stroke|visibility:off&style=feature:landscape|element:geometry|saturation:-100&style=feature:water|saturation:-100|invert_lightness:true&key=AIzaSyDz4AJ9TK_qNtpYLKVmfYK6a8oVt4dL9yc' />") );
+  $el.append( $('<div>').addClass('currentCity').html("<img src='http://maps.googleapis.com/maps/api/staticmap?center=" + currentCity + "&size=320x200&zoom=11&style=element:geometry.stroke|visibility:off&style=feature:landscape|element:geometry|saturation:-100&style=feature:water|saturation:-100|invert_lightness:true&key=AIzaSyDz4AJ9TK_qNtpYLKVmfYK6a8oVt4dL9yc' />") );
+  $el.append( $('<div>').addClass('languages').text(languages) );
+  $el.append( $('<div>').addClass('coding').text(coding) );
+  $el.append( $('<div>').addClass('group').text(group) );
+  $el.append( $('<div>').addClass('graduate').text(graduate) );
   $el.append( $('<div>').addClass('favoriteBook').text(favoriteBook) );
   $el.append( $('<div>').addClass('favoriteSong').text(favoriteSong) );
   $el.append( $('<div>').addClass('favoriteMovie').text(favoriteMovie) );
   $el.append( $('<div>').addClass('favoriteFood').text(favoriteFood) );
   $el.append( $('<div>').addClass('favoriteTvShow').text(favoriteTvShow) );
-  $el.append( $('<div>').addClass('gender').text(gender) );
-  $el.append( $('<a>').addClass('gitHub').text("http://www.github.com/" + gitHub) );
-  $el.append( $('<div>').addClass('linkedIn').text(linkedIn) );
-  $el.append( $('<div>').addClass('website').text(website) );
-  $el.append( $('<div>').addClass('facebook').text(facebook) );
-  $el.append( $('<div>').addClass('twitter').text(twitter) );
-  $el.append( $('<div>').addClass('instagram').text(instagram) );
-  $el.append( $('<div>').addClass('tumblr').text(tumblr) );
-  $el.append( $('<div>').addClass('languages').text(languages) );
-  $el.append( $('<div>').addClass('coding').text(coding) );
-  $el.append( $('<div>').addClass('group').text(group) );
-  $el.append( $('<div>').addClass('graduate').text(graduate) );
+  $el.append( $('<div>').addClass('gitHub').html("<a target='_blank' href='http://www.github.com/" + gitHub + "'> GitHub </a>") );
+  $el.append( $('<div>').addClass('linkedIn').html("<a target='_blank' href='https://www.linkedin.com/in/" + linkedIn + "'> LinkedIn </a>") );
+  $el.append( $('<div>').addClass('facebook').html("<a target='_blank' href='https://www.facebook.com/" + facebook + "'> Facebook </a>") );
+  $el.append( $('<div>').addClass('twitter').html("<a target='_blank' href='https://www.twitter.com/" + twitter + "'> Twitter </a>") );
+  $el.append( $('<div>').addClass('instagram').html("<a target='_blank' href='https://www.instagram.com/" + instagram + "'> Instagram </a>") );
+  $el.append( $('<div>').addClass('tumblr').html("<a target='_blank' href='https://" + tumblr + ".tumblr.com/'> Tumblr </a>") );
+  $el.append( $('<div>').addClass('website').html("<a target='_blank' href='http://" + website + "'> Website </a>") );
   $el.append( $('<div>').addClass('bio').text(bio) );
-  $el.append( $('<img>').addClass('img').attr('src' , img) );
 
   $('.profile').append($el);
 }
 
-function makeUsers(){
+function makeProfile(){
   $.ajax({
     method: 'get',
     url: '/api/otters/profile',
@@ -128,7 +195,7 @@ function makeUsers(){
   });
 }
 
-function createUser(otterData, callback){
+function createProfile(otterData, callback){
   callback = callback || function(){};
   $.ajax({
     method: 'post',
@@ -164,12 +231,12 @@ function createUser(otterData, callback){
     success: function(data){
       var img = data.img;
       callback(img);
-      makeUsers();
+      makeProfile();
     }
   });
 }
 
-function setUserFormHandler(){
+function setProfileFormHandler(){
   $('form#getData').on('submit', function(e){
     e.preventDefault();
     $('#img').attr('src','');
@@ -229,7 +296,7 @@ function setUserFormHandler(){
       img: formUrl
 
     };
-    createUser(otterData, function(img){
+    createProfile(otterData, function(img){
     })
   });
 }
@@ -247,18 +314,6 @@ function createProject(projectData, callback){
   });
 }
 
-function renderProject(project){
-  var $el = $('<div>').addClass('project');
-  $el.append( $('<div>').addClass('projectName').text(project.projectName) );
-  $el.append( $('<div>').addClass('projectLanguage').text(project.projectLanguage) );
-  $el.append( $('<img>').addClass('projectImg').attr('src' , projectImg) );
-  $el.append( $('<div>').addClass('projectDescription').text(project.projectDescription) );
-  $el.append( $('<div>').addClass('projectGitHubLink').text(project.projectGitHubLink) );
-  $el.append( $('<div>').addClass('projectPublicLink').text(project.projectPublicLink) );
-
-  $('.profile').append($el);
-}
-
 function setBlogFormHandler(){
   $('form#getBlogData').on('submit', function(e){
     e.preventDefault();
@@ -268,19 +323,6 @@ function setBlogFormHandler(){
     };
     createBlog(blogData, function(blog){
     })
-  });
-}
-
-function createBlog(blogData, callback){
-  callback = callback || function(){};
-  $.ajax({
-    url: '/api/otters/blogs',
-    method: 'post',
-    data: {blogData},
-    success: function(data){
-      var blog = data.blog;
-      callback(blog);
-    }
   });
 }
 
@@ -330,12 +372,11 @@ function renderProject(project){
   var $el = $('<div>').addClass('project');
   $el.append( $('<div>').addClass('projectName').text(project.projectName) );
   $el.append( $('<div>').addClass('projectLanguage').text(project.projectLanguage) );
-  $el.append( $('<img>').addClass('projectImg').attr('src' , projectImg) );
+  // $el.append( $('<img>').addClass('projectImg').attr('src' , projectImg) );
   $el.append( $('<div>').addClass('projectDescription').text(project.projectDescription) );
   $el.append( $('<div>').addClass('projectGitHubLink').text(project.projectGitHubLink) );
   $el.append( $('<div>').addClass('projectPublicLink').text(project.projectPublicLink) );
-
-  $('.profile').append($el);
+  return $el;
 }
 
 function setBlogFormHandler(){
@@ -377,19 +418,27 @@ $(function(){
   setProjectFormHandler();
   setBlogFormHandler();
   setLogOutHandler();
-  makeUsers();
+  makeProfile();
+  updateViews();
 
   function readImage() {
+    var size = this.files[0].size;
       if ( this.files && this.files[0] ) {
+        if(size > 15625){
+          $('#url').val('');
+          $('#img').attr( "src", '' );
+          $("#asd").val('');
+          alert("Could not upload more than 125Kb");
+        } else {
           var FR = new FileReader();
           FR.onload = function(e) {
-               $('#img').attr( "src", e.target.result );
-               $('#url').val(e.target.result);
+            $('#img').attr( "src", e.target.result );
+            $('#url').val( e.target.result );
           };
           FR.readAsDataURL( this.files[0] );
+        }
       }
-  }
+    }
   $("#asd").change( readImage );
-  setUserFormHandler();
-
+  setProfileFormHandler();
 })
