@@ -22,6 +22,13 @@ var router = express.Router();
 var Otter = require('../../models/otter');
 
 
+router.patch('/profile', function(req, res){
+  Otter.findByIdAndUpdate({ id: req.user._id },{Otter: req.body}, function(err, otter) {
+    res.json({ Otter: otter });
+
+    });
+});
+
 router.get('/', function(req, res){
   Otter.find({}, function(err, otters) {
     res.json({ Otter: otters });
