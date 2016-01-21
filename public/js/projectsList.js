@@ -1,33 +1,49 @@
+console.log('projects');
 $(function(){
-  userProjects();
-})
-var $id;
-function userProjects(){
+  console.log('jhvgjc');
+  userProjectsShow();
+});
+
+var $idProject;
+function userProjectsShow(){
   $('body').on('click', '.projectSum', function(e){
     e.preventDefault();
-    console.log(this);
-    $id='';
-    // $id = $(this).closest("div").attr("class").split(' ')[1];
-    // console.log($id + 'here have to change');
-    // getProfileInfo($id)
-  })
+    $('.projectShow').empty();
+    $idProject='';
+    $idProject = $(this).attr("class").split(' ')[1];
+    getProjectInfo($idProject)
+})
 }
 
-// var ottersDB;
-// function getProfileInfo($id){
-//   $.ajax({
-//     url: '/api/otters',
-//     success: function(data){
-//       ottersDB = data.Otter;
-//       for (var i = 0; i < ottersDB.length; i++) {
-//           if (ottersDB[i]['id'] === $id) {
-//               $('.profileShow').empty();
-//               var avatar = ottersDB[i].img;
-//               if( (/\b\w*adorable\w*\b/g).test(avatar) ){
-//                 avatar += ottersDB[i].img+ottersDB[i].name+ottersDB[i].lastname;
-//               }
-//               showProfile(ottersDB[i].name,ottersDB[i].lastname,ottersDB[i].bday,ottersDB[i].zodiac,ottersDB[i].bloodtype,ottersDB[i].placeOfBirth,ottersDB[i].currentCity,ottersDB[i].favoriteBook,ottersDB[i].favoriteSong,ottersDB[i].favoriteMovie,ottersDB[i].favoriteFood,ottersDB[i].favoriteTvShow,ottersDB[i].gender,ottersDB[i].gitHub,ottersDB[i].linkedIn,ottersDB[i].website,ottersDB[i].facebook,ottersDB[i].twitter,ottersDB[i].instagram,ottersDB[i].tumblr,ottersDB[i].languages,ottersDB[i].coding,ottersDB[i].group,ottersDB[i].graduate,ottersDB[i].bio,ottersDB[i].img);
-//               return;
-//           }
-//       }
-//   }
+var ottersDB;
+function getProjectInfo(id){
+  $.ajax({
+    url: '/api/otters',
+    success: function(data){
+      ottersDB = data.Otter;
+      for (var i = 0; i < ottersDB.length; i++) {
+        var otter = ottersDB[i];
+        for(var j=0;j<otter.projects.length;j++){
+        var project = otter.projects[j];
+          if (project['_id'] === id) {
+              $('.profileShow').empty();
+              showProject(project);
+              return;
+            }
+      }
+     }
+      return;
+    }
+  })
+}
+  function showProject(project){
+    console.log('heeeer');
+    var $el = $('<div>').addClass('projectShow');
+    $el.append( $('<div>').addClass('projectName').text(project.projectName) );
+    $el.append( $('<div>').addClass('projectLanguage').text(project.projectLanguage) );
+    $el.append( $('<img>').addClass('projectImg').attr('src' , project.projectImg) );
+    $el.append( $('<div>').addClass('projectDescription').text(project.projectDescription) );
+    $el.append( $('<div>').addClass('projectGitHubLink').text(project.projectGitHubLink) );
+    $el.append( $('<div>').addClass('projectPublicLink').text(project.projectPublicLink) );
+    $('body').append($el);
+  }
