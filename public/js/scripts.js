@@ -73,7 +73,7 @@ function getAllProfiles(callback){
 }
 
 function renderProfile(otter){
-  var $el = $('<div>').addClass('container');
+  var $el = $('<div>').addClass('container ' + otter.id );
   $el.append( $('<img>').addClass('list img').attr('src' , otter.img) );
   $el.append( $('<div>').addClass('list name').text(otter.name + ' ' + otter.lastname) );
 
@@ -347,6 +347,7 @@ function setProjectFormHandler(){
       projectGitHubLink:formProjectGitHubLink,
       projectPublicLink:formProjectPublicLink
     };
+    $('.projectform').toggle();
     createProject(projectData, function(project){
     })
   });
@@ -417,6 +418,14 @@ $(function(){
   setLogOutHandler();
   makeProfile();
   updateViews();
+
+  $(".openprojectform").on('click', function(){
+    $('.projectform').toggle();
+  })
+
+  $(".closeprojectform").on('click', function(){
+    $('.projectform').toggle();
+  })
 
   function readImage() {
     var size = this.files[0].size;

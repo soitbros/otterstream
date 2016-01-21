@@ -8,9 +8,18 @@
 
     <% include ./partials/header %>
 
-    <% include ./partials/profileForm %>
+    <div class="main">
+      <div class="openprojectform">Add Project</div>
+    </div>
 
-    <% include ./partials/projects %>
+    <div class="profileform">
+      <% include ./partials/profileForm %>
+      <div class="closeprojectform">Close</div>
+    </div>
+
+    <div class="projectform">
+      <% include ./partials/projects %>
+    </div>
 
     <% include ./partials/blog %>
 
