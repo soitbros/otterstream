@@ -29,7 +29,7 @@ body {
   background-color: red;
 }
 
-.profilelist img, .projectlist img {
+.profilelist img, .projectlist img, .profileproject img {
   height: 100px;
 }
 
@@ -42,5 +42,5 @@ body {
 }
 
 .persondeets {
-  text-align: right; 
+  text-align: right;
 }

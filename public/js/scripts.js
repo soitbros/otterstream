@@ -1,25 +1,3 @@
-console.log('...loaded');
-
-window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '1499610890345471',
-    cookie     : true,
-    xfbml      : true,
-    version    : 'v2.2'
-  });
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-};
-
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
 function logIn(username, password, callback) {
   $.ajax({
     method: 'post',
@@ -54,9 +32,6 @@ function setLogOutHandler(){
   $('form#log-out').on('submit', function(e){
     e.preventDefault();
     $.removeCookie('token');
-    FB.logout(function(response) {
-      console.log('user is now logged-out');
-    });
     window.location.href = '/';
   });
 };
@@ -145,13 +120,14 @@ function makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,fa
   var tworow = $('<div>').addClass('row align-center');
   var personDeets = $('<div>').addClass('persondeets large-5 column');
   var profDeets = $('<div>').addClass('profdeets large-5 column');
-  $el.append( tworow.append(personDeets.append($('<div>').addClass('languages').text(languages) )));
-  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteBook').text(favoriteBook) )));
-  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteSong').text(favoriteSong) )));
-  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteMovie').text(favoriteMovie) )));
-  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteTvShow').text(favoriteTvShow) )));
-  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteFood').text(favoriteFood) )));
-  $el.append( tworow.append(profDeets.append($('<div>').addClass('coding').text(coding) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('languages').text('Languages: ' + languages) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteBook').text('Favorite Book: ' + favoriteBook) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteSong').text('Favorite Song: ' + favoriteSong) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteMovie').text('Favorite Movie: ' + favoriteMovie) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteTvShow').text('Favorite TV Show: ' + favoriteTvShow) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteFood').text('Favorite Food: ' + favoriteFood) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('bio').text('Bio: ' + bio) )));
+  $el.append( tworow.append(profDeets.append($('<div>').addClass('coding').text('Coding Languages: ' + coding) )));
   $el.append( tworow.append(profDeets.append($('<div>').addClass('gitHub').html("<a target='_blank' href='http://www.github.com/" + gitHub + "'> GitHub </a>") )));
   $el.append( tworow.append(profDeets.append($('<div>').addClass('linkedIn').html("<a target='_blank' href='https://www.linkedin.com/in/" + linkedIn + "'> LinkedIn </a>") )));
   $el.append( tworow.append(profDeets.append($('<div>').addClass('facebook').html("<a target='_blank' href='https://www.facebook.com/" + facebook + "'> Facebook </a>") )));
@@ -159,7 +135,6 @@ function makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,fa
   $el.append( tworow.append(profDeets.append($('<div>').addClass('instagram').html("<a target='_blank' href='https://www.instagram.com/" + instagram + "'> Instagram </a>") )));
   $el.append( tworow.append(profDeets.append($('<div>').addClass('tumblr').html("<a target='_blank' href='https://" + tumblr + ".tumblr.com/'> Tumblr </a>") )));
   $el.append( tworow.append(profDeets.append($('<div>').addClass('website').html("<a target='_blank' href='http://" + website + "'> Website </a>") )));
-  $el.append( $('<div>').addClass('bio').text(bio) );
   for (var i = 0; i < projects.length; i++) {
     var project = projects[i];
     var $proj = $('<div>').addClass('profileproject ' + project._id);
