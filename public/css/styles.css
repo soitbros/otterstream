@@ -2,7 +2,7 @@ body {
   background-color: darkturquoise;
 }
 
-.profilelist, .profileModal, .project, .projectlist, .profileform, .projectform {
+.profilelist, .profileModal, .project, .projectlist, .profileform, .projectform, .editprofileform {
   display: none;
 }
 

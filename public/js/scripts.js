@@ -422,6 +422,10 @@ $(function(){
     $('.projectform').toggle();
   })
 
+  $(".editprofile").on('click', function(){
+    $('.editprofileform').toggle();
+  })
+
   $(".closeprojectform").on('click', function(){
     $('.projectform').toggle();
   })
