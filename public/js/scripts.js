@@ -391,7 +391,7 @@ function createProject(projectData, callback){
 }
 
 function renderProject(project){
-  var $el = $('<div>').addClass('projectSum');
+  var $el = $('<div>').addClass('projectSum '+project[k]._id);
   $el.append( $('<div>').addClass('projectName').text(project[k].projectName) );
   // $el.append( $('<div>').addClass('projectLanguage').text(project[k].projectLanguage) );
   $el.append( $('<img>').addClass('projectImg').attr('src' , project[k].projectImg) );
