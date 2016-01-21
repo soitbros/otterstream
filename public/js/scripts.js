@@ -132,30 +132,33 @@ function updateViews(){
 
 function makeDiv(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img,projects,blogs){
   var $el = $('<div>').addClass('container');
-  $el.append( $('<img>').addClass('img').attr('src' , img) );
-  $el.append( $('<div>').addClass('name').text(name + ' ' + lastname) );
-  $el.append( $('<div>').addClass('bday').text(bday) );
-  $el.append( $('<div>').addClass('gender').text(gender) );
-  $el.append( $('<div>').addClass('zodiac').text(zodiac) );
-  $el.append( $('<div>').addClass('bloodtype').text(bloodtype) );
-  $el.append( $('<div>').addClass('placeOfBirth').html("<img src='http://maps.googleapis.com/maps/api/staticmap?center=" + placeOfBirth + "&size=320x200&zoom=11&style=element:geometry.stroke|visibility:off&style=feature:landscape|element:geometry|saturation:-100&style=feature:water|saturation:-100|invert_lightness:true&key=AIzaSyDz4AJ9TK_qNtpYLKVmfYK6a8oVt4dL9yc' />") );
-  $el.append( $('<div>').addClass('currentCity').html("<img src='http://maps.googleapis.com/maps/api/staticmap?center=" + currentCity + "&size=320x200&zoom=11&style=element:geometry.stroke|visibility:off&style=feature:landscape|element:geometry|saturation:-100&style=feature:water|saturation:-100|invert_lightness:true&key=AIzaSyDz4AJ9TK_qNtpYLKVmfYK6a8oVt4dL9yc' />") );
-  $el.append( $('<div>').addClass('languages').text(languages) );
-  $el.append( $('<div>').addClass('coding').text(coding) );
-  $el.append( $('<div>').addClass('group').text(group) );
-  $el.append( $('<div>').addClass('graduate').text(graduate) );
-  $el.append( $('<div>').addClass('favoriteBook').text(favoriteBook) );
-  $el.append( $('<div>').addClass('favoriteSong').text(favoriteSong) );
-  $el.append( $('<div>').addClass('favoriteMovie').text(favoriteMovie) );
-  $el.append( $('<div>').addClass('favoriteFood').text(favoriteFood) );
-  $el.append( $('<div>').addClass('favoriteTvShow').text(favoriteTvShow) );
-  $el.append( $('<div>').addClass('gitHub').html("<a target='_blank' href='http://www.github.com/" + gitHub + "'> GitHub </a>") );
-  $el.append( $('<div>').addClass('linkedIn').html("<a target='_blank' href='https://www.linkedin.com/in/" + linkedIn + "'> LinkedIn </a>") );
-  $el.append( $('<div>').addClass('facebook').html("<a target='_blank' href='https://www.facebook.com/" + facebook + "'> Facebook </a>") );
-  $el.append( $('<div>').addClass('twitter').html("<a target='_blank' href='https://www.twitter.com/" + twitter + "'> Twitter </a>") );
-  $el.append( $('<div>').addClass('instagram').html("<a target='_blank' href='https://www.instagram.com/" + instagram + "'> Instagram </a>") );
-  $el.append( $('<div>').addClass('tumblr').html("<a target='_blank' href='https://" + tumblr + ".tumblr.com/'> Tumblr </a>") );
-  $el.append( $('<div>').addClass('website').html("<a target='_blank' href='http://" + website + "'> Website </a>") );
+  var biorow = $('<div>').addClass('row align-center');
+  var bioDeets = $('<div>').addClass('biodeets large-5 column');
+  $el.append( $('<div>').addClass('large-9 large-offset-3 column row').append($('<h1>').addClass('name').html( name + ' ' + lastname + '<h4>' + group + ' ' + graduate + '</h4>') ));
+  $el.append( biorow.append($('<img>').addClass('profileimg large-6 column').attr('src' , img) ));
+  $el.append( biorow.append(bioDeets.append($('<div>').addClass('bday').text('Birthdate: ' + bday) )));
+  $el.append( biorow.append(bioDeets.append($('<div>').addClass('gender').text('Gender: ' + gender) )));
+  $el.append( biorow.append(bioDeets.append($('<div>').addClass('zodiac').text('Zodiac Sign: ' + zodiac) )));
+  $el.append( biorow.append(bioDeets.append($('<div>').addClass('bloodtype').text('Bloodtype: ' + bloodtype) )));
+  $el.append( biorow.append(bioDeets.append($('<div>').addClass('placeOfBirth').html("Hometown <br /><img src='http://maps.googleapis.com/maps/api/staticmap?center=" + placeOfBirth + "&size=320x200&zoom=11&style=element:geometry.stroke|visibility:off&style=feature:landscape|element:geometry|saturation:-100&style=feature:water|saturation:-100|invert_lightness:true&key=AIzaSyDz4AJ9TK_qNtpYLKVmfYK6a8oVt4dL9yc' />") )));
+  $el.append( biorow.append(bioDeets.append($('<div>').addClass('currentCity').html("Current City <br /><img src='http://maps.googleapis.com/maps/api/staticmap?center=" + currentCity + "&size=320x200&zoom=11&style=element:geometry.stroke|visibility:off&style=feature:landscape|element:geometry|saturation:-100&style=feature:water|saturation:-100|invert_lightness:true&key=AIzaSyDz4AJ9TK_qNtpYLKVmfYK6a8oVt4dL9yc' />") )));
+  var tworow = $('<div>').addClass('row align-center');
+  var personDeets = $('<div>').addClass('persondeets large-5 column');
+  var profDeets = $('<div>').addClass('profdeets large-5 column');
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('languages').text(languages) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteBook').text(favoriteBook) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteSong').text(favoriteSong) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteMovie').text(favoriteMovie) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteTvShow').text(favoriteTvShow) )));
+  $el.append( tworow.append(personDeets.append($('<div>').addClass('favoriteFood').text(favoriteFood) )));
+  $el.append( tworow.append(profDeets.append($('<div>').addClass('coding').text(coding) )));
+  $el.append( tworow.append(profDeets.append($('<div>').addClass('gitHub').html("<a target='_blank' href='http://www.github.com/" + gitHub + "'> GitHub </a>") )));
+  $el.append( tworow.append(profDeets.append($('<div>').addClass('linkedIn').html("<a target='_blank' href='https://www.linkedin.com/in/" + linkedIn + "'> LinkedIn </a>") )));
+  $el.append( tworow.append(profDeets.append($('<div>').addClass('facebook').html("<a target='_blank' href='https://www.facebook.com/" + facebook + "'> Facebook </a>") )));
+  $el.append( tworow.append(profDeets.append($('<div>').addClass('twitter').html("<a target='_blank' href='https://www.twitter.com/" + twitter + "'> Twitter </a>") )));
+  $el.append( tworow.append(profDeets.append($('<div>').addClass('instagram').html("<a target='_blank' href='https://www.instagram.com/" + instagram + "'> Instagram </a>") )));
+  $el.append( tworow.append(profDeets.append($('<div>').addClass('tumblr').html("<a target='_blank' href='https://" + tumblr + ".tumblr.com/'> Tumblr </a>") )));
+  $el.append( tworow.append(profDeets.append($('<div>').addClass('website').html("<a target='_blank' href='http://" + website + "'> Website </a>") )));
   $el.append( $('<div>').addClass('bio').text(bio) );
   for (var i = 0; i < projects.length; i++) {
     var project = projects[i];
@@ -240,7 +243,7 @@ function createProfile(otterData, callback){
       favoriteSong:otterData.favoriteSong,
       favoriteMovie:otterData.favoriteMovie,
       favoriteFood:otterData.favoriteFood,
-      formFavoriteTvShow:otterData.favoriteTvShow,
+      favoriteTvShow:otterData.favoriteTvShow,
       gender:otterData.gender,
       gitHub:otterData.gitHub,
       linkedIn:otterData.linkedIn,
@@ -448,6 +451,13 @@ $(function(){
 
   $(".closeprojectform").on('click', function(){
     $('.projectform').toggle();
+  })
+
+  $(".openprofile").on('click', function(){
+    $('.projectlist').hide();
+    $('.profilelist').hide();
+    $('.profile').show();
+    $('.project').hide();
   })
 
   $(".toggleprojectlist").on('click', function(){

@@ -9,15 +9,16 @@
     <% include ./partials/header %>
 
     <div class="main">
-      <div class="toggleprofilelist">Show All Profiles</div>
-      <div class="toggleprojectlist">Show All Projects</div>
+      <div class="navbar">
+        <div class="toggleprofilelist">Show All Profiles</div>
+        <div class="toggleprojectlist">Show All Projects</div>
+        <div class="openprofile">Show Your Profile</div>
+      </div>
       <div class="profile">
         <div class="profileform">
           <% include ./partials/profileForm %>
         </div>
         <div class="profilehead">
-          <div class="openprofile">Show Your Profile</div>
-          <div class="openprojectform">Add Project</div>
           <div class="projectform">
             <% include ./partials/projects %>
             <div class="closeprojectform">Close</div>
@@ -25,7 +26,9 @@
         </div>
         <div class="profilebody"></div>
         <div class="profilefooter">
-          <div class="profileprojects"></div>
+          <div class="profileprojects">
+            <div class="openprojectform">Add Project</div>
+          </div>
           <div class="profileblog">
             <% include ./partials/blog %>
           </div>

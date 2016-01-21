@@ -2,19 +2,11 @@ body {
   background-color: darkturquoise;
 }
 
-.profilelist img {
-  height: 100px;
-}
-
 .profilelist, .profileModal, .project, .projectlist, .profileform, .projectform {
   display: none;
 }
 
-.projectlist * {
-  display: inline-block;
-}
-
-.profilelist * {
+.projectlist *,  .profilelist *, .navbar * {
   display: inline-block;
 }
 
@@ -28,7 +20,6 @@ body {
   background-color: yellow;
 }
 
-
 .projectform {
   position: absolute;
   top: 20%;
@@ -36,4 +27,20 @@ body {
   height: 20em;
   box-shadow: 10px 5px 5px black;
   background-color: red;
+}
+
+.profilelist img, .projectlist img {
+  height: 100px;
+}
+
+.profileimg {
+  height: 550px;
+}
+
+.biodeets {
+  height: 550px;
+}
+
+.persondeets {
+  text-align: right; 
 }
