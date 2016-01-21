@@ -395,7 +395,7 @@ function createBlog(blogData, callback){
     method: 'post',
     data: {blogData},
     success: function(data){
-      var blog = data.blog;
+       var blog = data.blog;
       callback(blog);
     }
   });

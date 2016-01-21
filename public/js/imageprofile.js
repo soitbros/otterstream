@@ -1,0 +1,5 @@
+$(function(){
+  userProfile();
+})
+
+function userProfile(){}
