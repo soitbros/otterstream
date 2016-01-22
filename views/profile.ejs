@@ -11,8 +11,9 @@
         <div class="toggleprofilelist">Show All Profiles</div>
         <div class="toggleprojectlist">Show All Projects</div>
         <div class="openprofile">Show Your Profile</div>
-        <div class="editprofile">Edit Your Profile</div>
-        <% include ./partials/profileFormEdit %>
+        <div class="editprofile">Edit Your Profile
+            <% include ./partials/profileFormEdit %>
+        </div>
       </div>
       <div class="profile">
         <div class="profileform">
@@ -29,9 +30,29 @@
           <div class="profileprojects row align-center">
             <div class="openprojectform row large-12 align-center">Add Project</div>
           </div>
-          <div class="profileblog row align-center large-4">
-            <% include ./partials/blog %>
+
+        <div id="blog-chat-toggle">
+          <div class="blog-toggle">
+          		<label id="Pro-Blog" for="item-1">Toggle Blog</label>
+          		<input type="checkbox" name="one" id="item-1">
+          		  <div class="blog-hide">
+                  <div class="profileblog row align-center large-4">
+                    <% include ./partials/blog %>
+                  </div>
+                </div>
           </div>
+          <div class="chat-toggle">
+              <label id="Pro-Chat" for="item-2">Toggle Chat</label>
+              <input type="checkbox" name="one" id="item-2">
+                <div class="chat-hide">
+                  <div class="profilechat row align-center large-4">
+                    <% include ./partials/chat %>
+                  </div>
+                </div>
+          </div>
+        </div>
+
+
         </div>
       </div>
       <div class="profilelist">

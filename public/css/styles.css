@@ -55,3 +55,76 @@ body {
 .profdeets {
   background-color: lightgray;
 }
+
+
+/*BLOG AND CHAT TOGGLES*/
+#blog-chat-toggle{
+
+}
+/*blog toggle*/
+#Pro-Blog {
+	display:block;
+	margin:0 auto;
+
+}
+#Pro-Blog:hover { text-decoration:underline }
+#item-1 {
+display: none;
+}
+.blog-hide {
+	width:50%;
+	border:1px solid #000;
+	background:whitesmoke;
+	max-height:999em;
+	opacity:1;
+	height:auto;
+	overflow:hidden;
+	transition:opacity .5s linear;
+}
+.blog-hide p {
+	padding:10px;
+	margin:0
+}
+#item-1[type=checkbox]:checked + div {
+	opacity:0;
+	max-height:0;
+	border:none;
+	transition:opacity .5s linear, max-height .5s linear;
+}
+/*Chat Toggle*/
+#chat-generator{
+  padding:10px;
+}
+#Pro-Chat {
+	display:block;
+	margin:0 auto;
+
+}
+#Pro-Chat:hover { text-decoration:underline }
+#item-2 {
+	display: none;
+}
+.chat-hide {
+	width:50%;
+	border:1px solid #000;
+	background:whitesmoke;
+	max-height:999em;
+	opacity:1;
+	height:auto;
+	overflow:hidden;
+	transition:opacity .5s linear;
+}
+.chat-hide p {
+	padding:10px;
+	margin:0
+}
+#item-2[type=checkbox]:checked + div {
+	opacity:0;
+	max-height:0;
+	border:none;
+}
+
+#chats-display{
+  width:100%;
+  overflow: scroll;
+}
