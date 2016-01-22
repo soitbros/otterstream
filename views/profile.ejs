@@ -8,10 +8,10 @@
     <% include ./partials/header %>
     <div class="main">
       <% include ./partials/profileFormEdit %>
+      <div class="profileform">
+        <% include ./partials/profileForm %>
+      </div>
       <div class="profile">
-        <div class="profileform">
-          <% include ./partials/profileForm %>
-        </div>
         <div class="profilehead">
           <div class="projectform">
             <% include ./partials/projects %>
@@ -32,26 +32,27 @@
                     <% include ./partials/blog %>
                   </div>
                 </div>
-              <label id="Pro-Blog" for="item-1">Blog</label>
+              <label id="Pro-Blog" for="item-1">+</label>
           </div>
         </div>
 
 
         </div>
       </div>
-      <div class="profilelist">
-        <div class="globalblog"></div>
-      </div>
-      <div class="project"></div>
-      <div class="projectlist"></div>
-      <div class="globalblogposts"></div>
       <div class="profileModal">
         <div class="profileModalBody"></div>
         <div class="profileModalFooter">
-          <div class="profileProjectsModal"></div>
+          <div class="profileProjectsModal row align-center"></div>
           <div class="profileBlogModal"></div>
         </div>
       </div>
+      <div class="profilelist row small-up-1 medium-up-2 large-up-6">
+        <div class="globalblog"></div>
+      </div>
+      <div class="projectlist row small-up-1 medium-up-2 large-up-6"></div>
+      <div class="project"></div>
+      <div class="globalblogposts"></div>
+
     </div>
   </body>
 </html>

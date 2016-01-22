@@ -6,27 +6,75 @@ a {
   color: dimgrey;
 }
 
+.navbar {
+  max-height: 300px;
+  width: 200px;
+  top: 0px;
+  right: 70px;
+  position: fixed;
+  background-color: lightseagreen;
+  padding: 0;
+}
+
+.toggleprofilelist, .openprofile {
+  background-color: snow;
+}
+
+#navigation {
+  z-index: 20;
+  float: right;
+  top: 15px;
+  right: 15px;
+  position: fixed;
+  border-radius: 50%;
+  background-color: darkgray;
+  width: 70px;
+  height: 70px;
+  vertical-align: middle;
+  line-height: 60px;
+  text-align: center;
+  font-size: 3em;
+}
+
+#blog-chat-toggle label {
+  font-size: 3em;
+}
+
+.logincontain {
+  background-color: snow;
+}
+
+.logintop {
+  margin-top: 15%;
+}
+
 .chat-toggle {
   top:0;
   position: fixed;
 }
 
-.profilelist, .profileModal, .project, .projectlist, .profileform, .projectform, .editprofileform {
+.profilelist, .profileModal, .project, .profilefooter,.projectlist, .projectform, .editprofileform, .navbar {
   display: none;
 }
 
-.projectlist *,  .profilelist *, .navbar * {
+/*.profileform {
+  display: none;
+}*/
+
+.projectlist *,  .profilelist * {
   display: inline-block;
 }
 
-.profileModal {
+.profileModal, .project {
   position: fixed;
-  top: 40%;
-  left: 30%;
-  max-height: 100%;
-  width: 40%;
+  top: 10%;
+  left: 13%;
+  max-height: 70%;
+  padding: 1em;
+  width: 70%;
+  overflow: scroll;
   box-shadow: 10px 5px 5px black;
-  background-color: mediumturquoise;
+  background-color: snow;
 }
 
 .projectform {
@@ -47,6 +95,18 @@ a {
 .profileimg {
   height: 550px;
   background-color: lightseagreen;
+}
+
+.profilelist, .projectlist {
+  background-color: lightgray;
+  margin-top: 6%;
+}
+
+.profilelist .container, .projectlist .projectSum {
+  text-align: center;
+  margin: .25em;
+  width: 10%;
+  vertical-align: top;
 }
 
 .biodeets {
@@ -76,15 +136,15 @@ a {
 /*blog toggle*/
 #Pro-Blog {
   float: right;
-  bottom: 0;
-  right: 0;
+  bottom: 15px;
+  right: 15px;
   position: fixed;
   border-radius: 50%;
   background-color: darkgray;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   vertical-align: middle;
-  line-height: 50px;
+  line-height: 60px;
   text-align: center;
 }
 

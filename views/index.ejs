@@ -6,34 +6,32 @@
     <title>OtterStream</title>
   </head>
   <body>
-    <h1>Hi!</h1>
-
-    <!--clint'bvnbvnvnvns junk -->
-    <div class="content-block">
-      <div class="sign-up">
-        <h4>Sign Up</h4>
-        <form id="sign-up" action="/api/users" method="post">
-          <input type="text" name="user[username]" placeholder="Username">
-          <input type="password" name="user[password]" placeholder="Password">
-          <input type="submit" style="visibility: hidden;">
-        </form>
+    <div class="logincontain">
+      <div class="row align-center logintop">
+        <h1>Welcome to OtterStream</h1>
       </div>
-
-      <div class="log-in">
-        <h4>Log In</h4>
-        <form id="log-in">
-          <input type="text" name="username" placeholder="Username">
-          <input type="password" name="password" placeholder="Password">
-          <input type="submit" style="visibility: hidden;">
-        </form>
+      <div class="row align-center">
+        <div class="large-5 columns auth-plain">
+          <div class="signup-panel left-solid">
+            <p class="welcome">Sign Up</p>
+            <form id="sign-up" action="/api/users" method="post">
+              <input class="small-10  columns" type="text" name="user[username]" placeholder="Username">
+              <input class="small-10  columns" type="password" name="user[password]" placeholder="Password">
+              <input type="submit" style="visibility: hidden;">
+            </form>
+          </div>
+        </div>
+        <div class="large-5 columns auth-plain">
+          <div class="signup-panel left-solid">
+            <p class="welcome">Log In</p>
+            <form id="log-in">
+              <input class="small-10  columns" type="text" name="username" placeholder="Username">
+              <input class="small-10  columns" type="password" name="password" placeholder="Password">
+              <input type="submit" style="visibility: hidden;">
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!--clint's junk -->
-
-
-    <div id="status">
-    </div>
-
   </body>
 </html>

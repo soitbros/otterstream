@@ -8,13 +8,11 @@ router.post('/', function(req, res){
   var newUser = new User(userData);
   newUser.save(function(err, databaseUser){
     res.redirect('/');
-    console.log('created!');
   });
 });
 
 
 router.post('/authenticate', function(req, res){
-  console.log('Authenticate tried');
   var username = req.body.username;
   var password = req.body.password;
   User.findOne({username:username}, function(err, databaseUser){

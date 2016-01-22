@@ -1,5 +1,9 @@
-<h2>Fill your profile info</h2>
-    <form id='getData'>
+<div class="row center-align offset-3 large-9 columns">
+  <h2>Profile Info</h2>
+</div>
+<div class="row center-align">
+  <form id='getData'>
+    <div class="large-3 columns">
       <input type="text" name="name" placeholder="First Name"><br>
       <input type="text" name="lastname" placeholder="Last Name"><br>
       <input type="date" name="bday" placeholder="Birthdate"><br>
@@ -21,12 +25,16 @@
       <input type="text" name="placeOfBirth" placeholder="Hometown"><br>
       <input type="text" name="currentCity" placeholder="Current City"><br>
       <input type="text" name="gender" placeholder="Gender"><br>
+    </div>
+    <div class="large-3 columns">
       <input type="text" name="languages" placeholder="Languages"><br>
       <input type="text" name="favoriteBook" placeholder="Favorite Book"><br>
       <input type="text" name="favoriteSong" placeholder="Favorite Song"><br>
       <input type="text" name="favoriteMovie" placeholder="Favorite Movie"><br>
       <input type="text" name="favoriteFood" placeholder="Favorite Food"><br>
       <input type="text" name="favoriteTvShow" placeholder="Favorite TV Show"><br>
+    </div>
+    <div class="large-3 columns">
       <input type="text" name="gitHub" placeholder="GitHub Username"><br>
       <input type="text" name="linkedIn" placeholder="LinkedIn Username"><br>
       <input type="text" name="facebook" placeholder="Facebook Shortcut"><br>
@@ -37,11 +45,15 @@
       <input type="text" name="coding" placeholder="Coding"><br>
       <input type="text" name="group" placeholder="WDI Group Name"><br>
       <input type="text" name="graduate" placeholder="WDI Group Year"><br>
+    </div>
+    <div class="large-3 columns">
       <textarea rows="4" cols="50" name="bio" placeholder="Tell us about yourself!"></textarea><br>
       <input type='file' id="asd" />
-      <input type="submit"  value="Save">
+      <input type="submit" class="getDataButton" value="Save">
       <input type="hidden" name="url" id="url">
-    </form>
-<img id="img" src="" />
-<div id="base"></div>
-<div id="imgFromDB"></div>
+    </div>
+  </form>
+  <img id="img" src="" />
+  <div id="base"></div>
+  <div id="imgFromDB"></div>
+</div>

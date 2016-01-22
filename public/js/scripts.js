@@ -236,6 +236,8 @@ function createProfile(otterData, callback){
       var img = data.img;
       callback(img);
       makeProfile();
+      $('.profileform').hide();
+      $('.profilefooter').show();
     }
   });
 }
@@ -355,13 +357,9 @@ function createProject(projectData, callback){
 }
 
 function renderProject(project){
-  var $el = $('<div>').addClass('projectSum '+project[k]._id);
-  $el.append( $('<div>').addClass('projectName').text(project[k].projectName) );
-  // $el.append( $('<div>').addClass('projectLanguage').text(project[k].projectLanguage) );
+  var $el = $('<div>').addClass('projectSum ' + project[k]._id);
   $el.append( $('<img>').addClass('projectImg').attr('src' , project[k].projectImg) );
-  // $el.append( $('<div>').addClass('projectDescription').text(project[k].projectDescription) );
-  // $el.append( $('<div>').addClass('projectGitHubLink').text(project[k].projectGitHubLink) );
-  // $el.append( $('<div>').addClass('projectPublicLink').text(project[k].projectPublicLink) );
+  $el.append( $('<div>').addClass('projectName').text(project[k].projectName) );
   $('.projectlist').append($el);
 }
 
@@ -408,6 +406,10 @@ $(function(){
 
   $(".openprojectform").on('click', function(){
     $('.projectform').toggle();
+  })
+
+  $("#navigation").on('click', function(){
+    $('.navbar').toggle();
   })
 
   $(".editprofile").on('click', function(){
