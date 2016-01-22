@@ -427,9 +427,18 @@ $(function(){
     $('.project').hide();
   })
 
+  $(".openprofileform").on('click', function(){
+    $('.projectlist').hide();
+    $('.profilelist').hide();
+    $('.profileform').toggle();
+    $('.project').hide();
+    $('.profile').hide();
+  })
+
   $(".toggleprojectlist").on('click', function(){
     $('.projectlist').show();
     $('.profilelist').hide();
+    $('.profileform').hide();
     $('.profile').hide();
     $('.project').hide();
   })
@@ -439,6 +448,7 @@ $(function(){
     $('.profile').hide();
     $('.projectlist').hide();
     $('.project').hide();
+    $('.profileform').hide();
   })
 
   function readImage() {

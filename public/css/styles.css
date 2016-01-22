@@ -53,13 +53,9 @@ a {
   position: fixed;
 }
 
-.profilelist, .profileModal, .project, .profilefooter,.projectlist, .projectform, .editprofileform, .navbar {
+.profilelist, .profileModal, .project, .profilefooter, .projectlist, .profileform, .projectform, .editprofileform, .navbar {
   display: none;
 }
-
-/*.profileform {
-  display: none;
-}*/
 
 .projectlist *,  .profilelist * {
   display: inline-block;
