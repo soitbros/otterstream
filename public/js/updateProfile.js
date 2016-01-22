@@ -1,7 +1,86 @@
-function editProfile(otterData, callback){
+var name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio;
+
+
+function getProfileDataInfo(){
+  console.log("inside");
+
+  $.ajax({
+    method: 'get',
+    url: '/api/otters/profile',
+    success: function(data){
+      // console.log(data);
+
+      name = data.Otter.name;
+      lastname = data.Otter.lastname;
+      bday = data.Otter.bday;
+      zodiac = data.Otter.zodiac;
+      bloodtype = data.Otter.bloodtype;
+      placeOfBirth = data.Otter.placeOfBirth;
+      currentCity = data.Otter.currentCity;
+      favoriteBook = data.Otter.favoriteBook;
+      favoriteSong = data.Otter.favoriteSong;
+      favoriteMovie = data.Otter.favoriteMovie;
+      favoriteFood = data.Otter.favoriteFood;
+      favoriteTvShow = data.Otter.favoriteTvShow;
+      gender = data.Otter.gender;
+      gitHub = data.Otter.gitHub;
+      linkedIn = data.Otter.linkedIn;
+      website = data.Otter.website;
+      facebook = data.Otter.facebook;
+      twitter = data.Otter.twitter;
+      instagram = data.Otter.instagram;
+      tumblr = data.Otter.tumblr;
+      languages = data.Otter.languages;
+      coding = data.Otter.coding;
+      group = data.Otter.group;
+      graduate = data.Otter.graduate;
+      bio = data.Otter.bio;
+      img = data.Otter.img;
+
+
+      setFormForEdit(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img)
+    }
+  })
+}
+
+function setFormForEdit(name,lastname,bday,zodiac,bloodtype,placeOfBirth,currentCity,favoriteBook,favoriteSong,favoriteMovie,favoriteFood,favoriteTvShow,gender,gitHub,linkedIn,website,facebook,twitter,instagram,tumblr,languages,coding,group,graduate,bio,img){
+  console.log('setfornm', name);
+  var $el = $('.editprofileform')
+      var formName = $el.find('input[name="name"]').val(name);
+      var formLastName = $el.find('input[name="lastname"]').val(lastname);
+      var formBday = $el.find('input[name="bday"]').val(bday);
+      var formZodiac = $el.find('select[name="zodiac"]').val(zodiac);
+      var formBloodtype = $el.find('input[name="bloodtype"]').val(bloodtype);
+      var formPlaceOfBirth = $el.find('input[name="placeOfBirth"]').val(placeOfBirth);
+      var formCurrentCity = $el.find('input[name="currentCity"]').val(currentCity);
+      var formFavoriteBook = $el.find('input[name="favoriteBook"]').val(favoriteBook);
+      var formFavoriteSong = $el.find('input[name="favoriteSong"]').val(favoriteSong);
+      var formFavoriteMovie = $el.find('input[name="favoriteMovie"]').val(favoriteMovie);
+      var formFavoriteFood = $el.find('input[name="favoriteFood"]').val(favoriteFood);
+      var formFavoriteTvShow = $el.find('input[name="favoriteTvShow"]').val(favoriteTvShow);
+      var formGender = $el.find('input[name="gender"]').val(gender);
+      var formGitHub = $el.find('input[name="gitHub"]').val(gitHub);
+      var formLinkedIn = $el.find('input[name="linkedIn"]').val(linkedIn);
+      var formWebsite = $el.find('input[name="website"]').val(website);
+      var formFacebook = $el.find('input[name="facebook"]').val(facebook);
+      var formTwitter = $el.find('input[name="twitter"]').val(twitter);
+      var formInstagram = $el.find('input[name="instagram"]').val(instagram);
+      var formTumblr = $el.find('input[name="tumblr"]').val(tumblr);
+      var formLanguages = $el.find('input[name="languages"]').val(languages);
+      var formCoding = $el.find('input[name="coding"]').val(coding);
+      var formGroup = $el.find('input[name="group"]').val(group);
+      var formGraduate = $el.find('input[name="graduate"]').val(graduate);
+      var formBio = $el.find('textarea[name="bio"]').val(bio);
+      var formUrl = $el.find('input[name="url"]').val(img);
+
+}
+
+
+
+function createProfileEdit(otterData, callback){
   callback = callback || function(){};
   $.ajax({
-    method: 'patch',
+    method: 'PUT',
     data: {
       name: otterData.name,
       img: otterData.img,
@@ -30,62 +109,22 @@ function editProfile(otterData, callback){
       graduate:otterData.graduate,
       bio:otterData.bio,
     },
-    url: '/api/otters',
+    url: '/api/otters/profile',
     success: function(data){
+      console.log(data, 'aftrr submit');
       var img = data.img;
       callback(img);
-      makeProfile();
     }
   });
 }
 
 
-function editProfile(otterData, callback){
-  callback = callback || function(){};
-  $.ajax({
-    method: 'get',
-    data: {
-      name: otterData.name,
-      img: otterData.img,
-      lastname:otterData.lastname,
-      bday:otterData.bday,
-      zodiac:otterData.zodiac,
-      bloodtype:otterData.bloodtype,
-      placeOfBirth:otterData.placeOfBirth,
-      currentCity:otterData.currentCity,
-      favoriteBook:otterData.favoriteBook,
-      favoriteSong:otterData.favoriteSong,
-      favoriteMovie:otterData.favoriteMovie,
-      favoriteFood:otterData.favoriteFood,
-      favoriteTvShow:otterData.favoriteTvShow,
-      gender:otterData.gender,
-      gitHub:otterData.gitHub,
-      linkedIn:otterData.linkedIn,
-      website:otterData.website,
-      facebook:otterData.facebook,
-      twitter:otterData.twitter,
-      instagram:otterData.instagram,
-      tumblr:otterData.tumblr,
-      languages:otterData.languages,
-      coding:otterData.coding,
-      group:otterData.group,
-      graduate:otterData.graduate,
-      bio:otterData.bio,
-    },
-    url: '/api/otters',
-    success: function(data){
-      var img = data.img;
-      callback(img);
-      setProfileFormHandler(data);
-    }
-  });
 
-function setProfileFormHandler(data){
+function setProfileFormHandlerEdit(){
   $('form#editData').on('submit', function(e){
     e.preventDefault();
-    console.log(data.name);
-    $('#img').attr('src','');
-    var formName = $(this).find('input[name="name"]').val(data.name);
+    // $('#img').attr('src','');
+    var formName = $(this).find('input[name="name"]').val();
     var formLastName = $(this).find('input[name="lastname"]').val();
     var formBday = $(this).find('input[name="bday"]').val();
     var formZodiac = $(this).find('select[name="zodiac"]').val();
@@ -141,7 +180,20 @@ function setProfileFormHandler(data){
       img: formUrl
 
     };
-    editProfile(otterData, function(img){
+    console.log(otterData, 'otter datas');
+    console.log('before callig');
+    createProfileEdit(otterData, function(){
+      console.log("done!");
     })
   });
 }
+
+
+$(function(){
+  // setUpdateProfileFormHandler();
+  // getProfileData()
+  setProfileFormHandlerEdit();
+  console.log('i m edit');
+  getProfileDataInfo();
+
+});

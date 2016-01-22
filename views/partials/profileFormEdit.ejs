@@ -1,5 +1,6 @@
 <div class="editprofileform">
-    <form id='editData' method="post">
+    <form id='editData' action='/api/otters/profile' method="post">
+      <input type='hidden', name='_method', value='put'>
       <input type="text" name="name" placeholder="First name" value=''><br>
       <input type="text" name="lastname" placeholder="Last name"><br>
       <input type="date" name="bday"><br>
