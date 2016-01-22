@@ -7,14 +7,7 @@
   <body>
     <% include ./partials/header %>
     <div class="main">
-      <div class="navbar">
-        <div class="toggleprofilelist">Show All Profiles</div>
-        <div class="toggleprojectlist">Show All Projects</div>
-        <div class="openprofile">Show Your Profile</div>
-        <div class="editprofile">Edit Your Profile
-            <% include ./partials/profileFormEdit %>
-        </div>
-      </div>
+      <% include ./partials/profileFormEdit %>
       <div class="profile">
         <div class="profileform">
           <% include ./partials/profileForm %>
@@ -33,22 +26,13 @@
 
         <div id="blog-chat-toggle">
           <div class="blog-toggle">
-          		<label id="Pro-Blog" for="item-1">Toggle Blog</label>
           		<input type="checkbox" name="one" id="item-1">
           		  <div class="blog-hide">
-                  <div class="profileblog row align-center large-4">
+                  <div class="profileblog">
                     <% include ./partials/blog %>
                   </div>
                 </div>
-          </div>
-          <div class="chat-toggle">
-              <label id="Pro-Chat" for="item-2">Toggle Chat</label>
-              <input type="checkbox" name="one" id="item-2">
-                <div class="chat-hide">
-                  <div class="profilechat row align-center large-4">
-                    <% include ./partials/chat %>
-                  </div>
-                </div>
+              <label id="Pro-Blog" for="item-1">Blog</label>
           </div>
         </div>
 

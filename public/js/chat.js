@@ -18,23 +18,17 @@ function GetName(){
     $('#hello').attr('id', id).text(name) ;
   }
 
-
-
-
-
-
 function setChatFormHandler(){
   $('form#chat-generator').on('submit', function(e){
     e.preventDefault();
-  var usernameText = $(this).find('input[name="username"]');
-  usernameText=usernameText.val($name);
-  var messageField = $(this).find('input[name="message"]');
-  var messageText = messageField.val();
-  messageField.val('');
-
-  var data = {username: usernameText, message: messageText};
-  socket.emit('user message to server', data);
-});
+    var usernameText = $(this).find('input[name="username"]');
+    usernameText=usernameText.val($name);
+    var messageField = $(this).find('input[name="message"]');
+    var messageText = messageField.val();
+    messageField.val('');
+    var data = {username: usernameText, message: messageText};
+    socket.emit('user message to server', data);
+  });
 }
 
 function renderMessage(img, username, message){

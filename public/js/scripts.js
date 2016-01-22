@@ -318,18 +318,6 @@ function createProject(projectData, callback){
   });
 }
 
-function setBlogFormHandler(){
-  $('form#getBlogData').on('submit', function(e){
-    e.preventDefault();
-    var formBlogBody = $(this).find('textarea[name="blogBody"]').val();
-    var blogData = {
-      blogBody:formBlogBody,
-    };
-    createBlog(blogData, function(blog){
-    })
-  });
-}
-
 function setProjectFormHandler(){
   $('form#getProjectData').on('submit', function(e){
     e.preventDefault();

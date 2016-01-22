@@ -2,6 +2,15 @@ body {
   background-color: darkturquoise;
 }
 
+a {
+  color: dimgrey;
+}
+
+.chat-toggle {
+  top:0;
+  position: fixed;
+}
+
 .profilelist, .profileModal, .project, .projectlist, .profileform, .projectform, .editprofileform {
   display: none;
 }
@@ -11,22 +20,24 @@ body {
 }
 
 .profileModal {
-  position: absolute;
+  position: fixed;
   top: 40%;
   left: 30%;
-  height: 20em;
+  max-height: 100%;
   width: 40%;
   box-shadow: 10px 5px 5px black;
-  background-color: yellow;
+  background-color: mediumturquoise;
 }
 
 .projectform {
-  position: absolute;
-  top: 20%;
-  left: 30%;
-  height: 20em;
+  position: fixed;
+  top: 10%;
+  left: 38%;
+  max-height: 100%;
+  width: 375px;
   box-shadow: 10px 5px 5px black;
-  background-color: red;
+  background-color: mediumturquoise;
+  padding: 10px;
 }
 
 .profilelist img, .projectlist img, .profileproject img {
@@ -35,11 +46,7 @@ body {
 
 .profileimg {
   height: 550px;
-  background-color: lightgray;
-}
-
-.namebar {
-  background-color: lightslategray;
+  background-color: lightseagreen;
 }
 
 .biodeets {
@@ -53,27 +60,39 @@ body {
 }
 
 .profdeets {
-  background-color: lightgray;
+  background-color: lightseagreen;
 }
 
 
 /*BLOG AND CHAT TOGGLES*/
 #blog-chat-toggle{
-
+  position: fixed;
+  top: 62%;
+  left: 70%;
+  width: 60%;
+  max-height: 50%;
 }
+
 /*blog toggle*/
 #Pro-Blog {
-	display:block;
-	margin:0 auto;
-
+  float: right;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  border-radius: 50%;
+  background-color: darkgray;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  line-height: 50px;
+  text-align: center;
 }
-#Pro-Blog:hover { text-decoration:underline }
+
 #item-1 {
 display: none;
 }
 .blog-hide {
 	width:50%;
-	border:1px solid #000;
 	background:whitesmoke;
 	max-height:999em;
 	opacity:1;
@@ -81,32 +100,42 @@ display: none;
 	overflow:hidden;
 	transition:opacity .5s linear;
 }
-.blog-hide p {
-	padding:10px;
-	margin:0
-}
+
 #item-1[type=checkbox]:checked + div {
 	opacity:0;
 	max-height:0;
 	border:none;
 	transition:opacity .5s linear, max-height .5s linear;
 }
-/*Chat Toggle*/
-#chat-generator{
-  padding:10px;
-}
-#Pro-Chat {
-	display:block;
-	margin:0 auto;
 
+#chat-generator{
+    position: fixed;
+    top: 0;
+    left: 70%;
+    width: 60%;
+    max-height: 50%;
 }
-#Pro-Chat:hover { text-decoration:underline }
+
+#Pro-Chat {
+  float: right;
+  top: 0;
+  right: 0;
+  position: fixed;
+  border-radius: 50%;
+  background-color: darkgray;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  line-height: 50px;
+  text-align: center;
+}
+
 #item-2 {
 	display: none;
 }
+
 .chat-hide {
-	width:50%;
-	border:1px solid #000;
+  width:50%;
 	background:whitesmoke;
 	max-height:999em;
 	opacity:1;
@@ -114,10 +143,12 @@ display: none;
 	overflow:hidden;
 	transition:opacity .5s linear;
 }
+
 .chat-hide p {
 	padding:10px;
 	margin:0
 }
+
 #item-2[type=checkbox]:checked + div {
 	opacity:0;
 	max-height:0;
@@ -127,4 +158,8 @@ display: none;
 #chats-display{
   width:100%;
   overflow: scroll;
+}
+
+.profileblogpost:nth-child(odd) {
+  background-color: silver;
 }
