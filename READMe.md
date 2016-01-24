@@ -2,7 +2,7 @@
 
 
 ### Description:
-OtterStream is a social network built on Node.js.
+OtterStream is a social network.
 It allows users to chat, share projects, and post about anything at all.
 
 ![Alt sign up log in screen](public/images/osScreenShot.png)
